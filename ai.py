@@ -2,7 +2,7 @@
 import json
 from google import genai
 
-with open('', 'r') as f:
+with open('key.json', 'r') as f:
     content = f.read()
     config = json.loads(content)
 api_key = config["GEMINI_API_KEY"]
