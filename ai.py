@@ -2,7 +2,7 @@
 import json
 from google import genai
 
-with open('/home/hadi/Desktop/code/python_code/projects/hunger_games_sim/.gitignore/key.json', 'r') as f:
+with open('', 'r') as f:
     content = f.read()
     config = json.loads(content)
 api_key = config["GEMINI_API_KEY"]
