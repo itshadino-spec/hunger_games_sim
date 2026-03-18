@@ -1,0 +1,10 @@
+[
+    {
+        "event": "forage",
+        "success_rate": 50,
+        "success": "healthy status",
+        "fail": "poison status",
+        "traits": ["chef","gym rat"]
+        
+    }
+]

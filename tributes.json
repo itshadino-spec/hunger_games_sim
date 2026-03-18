@@ -1,0 +1,24 @@
+[
+    {
+        "name": "apo",
+        "traits": [
+            "chef",
+            "happy",
+            "gyms"
+        ],
+        "status": [],
+        "alive": true
+    },
+    {
+        "name": "carlbot",
+        "traits": [
+            "robot",
+            "friendly",
+            "turtle"
+        ],
+        "status": [
+            "healthy status"
+        ],
+        "alive": true
+    }
+]
