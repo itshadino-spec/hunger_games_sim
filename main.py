@@ -50,10 +50,10 @@ while flag(tributes_instances):
         randomplayer(tributes_instances)
     while len(temp_instances) > 0:
         player = random.choice(temp_instances)
-        health = player.hp
-        health -= 10
-        if health <= 0:
+        player.hp -= 10
+        if player.hp <= 0:
             player.alive = False
+            temp_instances.remove(player)
             continue
         else:
             happenstance(player,events_instances[0])
