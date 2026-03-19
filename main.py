@@ -33,8 +33,7 @@ def flag(person_instances):
         status = person_instances[i]
         if status.alive == True:
             return True
-        else:
-            return False
+    return False
 
 def randomplayer(person_instances):
     j = 0
@@ -45,7 +44,7 @@ def randomplayer(person_instances):
 
 #day and night game loop
 a = 0
-while flag:
+while flag(tributes_instances):
     a += 1
     if a > 10:
         break
