@@ -1,0 +1,8 @@
+[
+    {
+        "name": "bow",
+        "type": "longrange",
+        "traits": [],
+        "lethality": [20]
+    }
+]
