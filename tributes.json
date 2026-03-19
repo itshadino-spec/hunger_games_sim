@@ -16,10 +16,7 @@
             "friendly",
             "turtle"
         ],
-        "status": [
-            "healthy status",
-            "healthy status"
-        ],
+        "status": [],
         "alive": true
     }
 ]

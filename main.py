@@ -26,5 +26,18 @@ def save():
     with open('tributes.json', 'w') as f:
         json.dump(tributes_data,f,indent = 4)
 
+def flag(person_instances):
+    for i in range(len(person_instances)):
+        status = person_instances[i]
+        if status.alive == True:
+            return True
+        else:
+            return False
+
+#day and night game loop
+
+    
+a = flag(tributes_instances)
+print(a)
 happenstance(tributes_instances[1], events_instances[0])
-save()
+#save()
