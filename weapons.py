@@ -10,7 +10,7 @@ class Weapon:
         self.name = name
         self.type = type
         self.traits = traits
-        self.letahlity = lethality
+        self.lethality = lethality
     def __repr__(self): 
         return f"{self.name}"
 
