@@ -4,6 +4,8 @@ import random
 from events import events_instances
 from tributes import tributes_instances
 
+temp_instances = []
+
 def happenstance(person,happening):
     event = happening.event
     name = person.name
@@ -34,15 +36,23 @@ def flag(person_instances):
         else:
             return False
 
+def randomplayer(person_instances):
+    j = 0
+    for i in person_instances:
+        person = person_instances[j]
+        temp_instances.append(person)
+        j += 1
+
 #day and night game loop
 a = 0
 while flag:
     a += 1
-    if a < 5:
-        print("hello world")
-    else:
+    if a > 10:
         break
-    
-
-happenstance(tributes_instances[1], events_instances[0])
-#save()
+    if len(temp_instances) == 0:
+        #save()
+        randomplayer(tributes_instances)
+    while len(temp_instances) > 0:
+        player = random.choice(temp_instances)
+        happenstance(player,events_instances[0])
+        temp_instances.remove(player)
