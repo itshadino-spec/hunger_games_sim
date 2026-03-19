@@ -43,15 +43,18 @@ def randomplayer(person_instances):
         j += 1
 
 #day and night game loop
-a = 0
+
 while flag(tributes_instances):
-    a += 1
-    if a > 10:
-        break
     if len(temp_instances) == 0:
         #save()
         randomplayer(tributes_instances)
     while len(temp_instances) > 0:
         player = random.choice(temp_instances)
-        happenstance(player,events_instances[0])
-        temp_instances.remove(player)
+        health = player.hp
+        health -= 10
+        if health <= 0:
+            player.alive = False
+            continue
+        else:
+            happenstance(player,events_instances[0])
+            temp_instances.remove(player)
