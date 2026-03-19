@@ -25,4 +25,3 @@ for j in events:
         traits=j['traits']
     )
     events_instances.append(new_event)
-print(events_instances)

@@ -35,9 +35,14 @@ def flag(person_instances):
             return False
 
 #day and night game loop
-
+a = 0
+while flag:
+    a += 1
+    if a < 5:
+        print("hello world")
+    else:
+        break
     
-a = flag(tributes_instances)
-print(a)
+
 happenstance(tributes_instances[1], events_instances[0])
 #save()
