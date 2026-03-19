@@ -7,6 +7,7 @@
             "gyms"
         ],
         "status": [],
+        "hp": 100,
         "alive": true
     },
     {
@@ -17,6 +18,7 @@
             "turtle"
         ],
         "status": [],
+        "hp": 100,
         "alive": true
     }
 ]
