@@ -25,7 +25,7 @@ def flavour_text(person, happening, outcome):
     data = info(person,happening)
     if outcome == True:
         win = chat.send_message(f"the person doing the event {data} suceeded, write an output similar to the example")
-        return win
+        return win.text
     else:
-        fail = chat.send_message(f"the person doing the event {data} suceeded, write an output similar to the example")
-        return fail
+        fail = chat.send_message(f"the person doing the event {data} failed, write an output similar to the example")
+        return fail.text

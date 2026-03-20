@@ -57,7 +57,7 @@ def main():
             randomplayer(tributes_instances)
         while len(temp_instances) > 0:
             player = random.choice(temp_instances)
-            player.hp -= 10
+            player.hp -= 40
             if player.hp <= 0:
                 player.alive = False
                 temp_instances.remove(player)
