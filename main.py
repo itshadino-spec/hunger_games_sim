@@ -55,7 +55,6 @@ def main():
             if player.hp <= 0:
                 player.alive = False
                 temp_instances.remove(player)
-                continue
             else:
                 happenstance(player,events_instances[0])
                 temp_instances.remove(player)
