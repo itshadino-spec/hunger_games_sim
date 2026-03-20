@@ -44,17 +44,21 @@ def randomplayer(person_instances):
 
 #day and night game loop
 
-while flag(tributes_instances):
-    if len(temp_instances) == 0:
-        #save()
-        randomplayer(tributes_instances)
-    while len(temp_instances) > 0:
-        player = random.choice(temp_instances)
-        player.hp -= 10
-        if player.hp <= 0:
-            player.alive = False
-            temp_instances.remove(player)
-            continue
-        else:
-            happenstance(player,events_instances[0])
-            temp_instances.remove(player)
+def main():
+    while flag(tributes_instances):
+        if len(temp_instances) == 0:
+            #save()
+            randomplayer(tributes_instances)
+        while len(temp_instances) > 0:
+            player = random.choice(temp_instances)
+            player.hp -= 10
+            if player.hp <= 0:
+                player.alive = False
+                temp_instances.remove(player)
+                continue
+            else:
+                happenstance(player,events_instances[0])
+                temp_instances.remove(player)
+
+if __name__ == "__main__":
+    main()
