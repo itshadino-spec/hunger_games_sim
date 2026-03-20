@@ -3,6 +3,8 @@ import random
 
 from events import events_instances
 from tributes import tributes_instances
+from ai import flavour_text
+
 
 temp_instances = []
 
@@ -17,11 +19,15 @@ def happenstance(person,happening):
     if any(trait in happening.traits for trait in person.traits):
         odds += 5
     if roll > odds:
+        llm_text = flavour_text(person,happening, False)
         person.status.append(happening.fail)
-        print("%s was poisoned by shifty berries" %(name)) #temp needs to be llm msg
+        print(llm_text)
     else:
+        llm_text =flavour_text(person,happening, True)
         person.status.append(happening.success)
-        print("%s ate delicious berries" %(name)) #temp, needs to be llm msg
+        print(llm_text)
+
+
 
 def save():
     tributes_data = [i.__dict__ for i in tributes_instances] 

@@ -1,6 +1,12 @@
 import json
 from google import genai
 
+
+def info(person,happening):
+    event_data = happening.__dict__
+    person_data = person.__dict__
+    return event_data , person_data
+
 def reader(file_name):
     with open(file_name, 'r') as f:
         content = f.read()
@@ -14,5 +20,12 @@ client = genai.Client(api_key=api_key)
 intro = reader('introduction.txt')
 chat = client.chats.create(model = 'gemini-2.5-flash')
 response = chat.send_message(intro)
-response = chat.send_message('summarise the previous message i sent')
-print(response.text)
+
+def flavour_text(person, happening, outcome):
+    data = info(person,happening)
+    if outcome == True:
+        win = chat.send_message(f"the person doing the event {data} suceeded, write an output similar to the example")
+        return win
+    else:
+        fail = chat.send_message(f"the person doing the event {data} suceeded, write an output similar to the example")
+        return fail

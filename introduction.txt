@@ -5,6 +5,6 @@ you will be provided with json data of tribute/s and it is your aim to write fla
 
 please refrain from any additional commentary 
 format responses similar to this, add commentary based on the traits provided in the json
-"the great chef apo was wondering amidst the forest where he found exotic berries, he quickly ate them and merrily went his way.
-
+win: "the great chef apo was wondering amidst the forest where he found exotic berries, he quickly ate them and merrily went his way.
+fail: "although apo was the greatest chef he was duped by some shifty berries he found"
 
