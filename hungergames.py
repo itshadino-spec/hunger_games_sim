@@ -65,6 +65,9 @@ def main():
             
             if player.hp <= 0:
                 player.alive = False
+                if flag(tributes_instances) == False:
+                    temp_instances.clear()
+                    break
             else:
                 happenstance(player,events_instances[0])
             temp_instances.remove(player)
