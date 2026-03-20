@@ -18,7 +18,7 @@ client = genai.Client(api_key=api_key)
 
 
 intro = reader('introduction.txt')
-chat = client.chats.create(model = 'gemini-2.5-flash')
+chat = client.chats.create(model = 'gemini-2.5-flash-lite')
 response = chat.send_message(intro)
 
 def flavour_text(person, happening, outcome):

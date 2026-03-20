@@ -35,17 +35,21 @@ def save():
         json.dump(tributes_data,f,indent = 4)
 
 def flag(person_instances):
+    alive_tributes = 0
     for i in range(len(person_instances)):
         status = person_instances[i]
         if status.alive == True:
-            return True
-    return False
+            alive_tributes += 1
+    if alive_tributes == 1:
+        return False
+    return True
 
 def randomplayer(person_instances):
     j = 0
     for i in person_instances:
         person = person_instances[j]
-        temp_instances.append(person)
+        if person.alive:
+            temp_instances.append(person)
         j += 1
 
 #day and night game loop
@@ -57,13 +61,15 @@ def main():
             randomplayer(tributes_instances)
         while len(temp_instances) > 0:
             player = random.choice(temp_instances)
-            player.hp -= 40
+            player.hp -= 40 
+            
             if player.hp <= 0:
                 player.alive = False
-                temp_instances.remove(player)
             else:
                 happenstance(player,events_instances[0])
-                temp_instances.remove(player)
+            temp_instances.remove(player)
+    winners = [p for p in tributes_instances if p.alive]
+    print(f"{winners[0].name} has won the hunger games!")
 
 if __name__ == "__main__":
     main()
