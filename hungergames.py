@@ -1,8 +1,7 @@
 import json
 import random
 
-from events import events_instances
-from tributes import tributes_instances
+from objects import tributes_instances, weapons_instances, events_instances
 from ai import flavour_text
 
 
