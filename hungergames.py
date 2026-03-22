@@ -2,7 +2,7 @@ import json
 import random
 
 from objects import tributes_instances, weapons_instances, events_instances
-from ai import flavour_text
+#from ai import flavour_text
 
 status_effects = {"poisoned": "hp decreaser" , "healthy": "hp increaser"}
 temp_instances = []
@@ -57,8 +57,22 @@ def passives(person):
 def combat(attacker,defender):
     pass
 
-def status_condition(person):
-    print("hello world")
+def status_condition(person,day):
+    infliction_day = person.status.values()
+    ran = False
+    for i in infliction_day:
+        if (day - i) >= 3:
+            key = i
+            tuplelist = person.status.items()
+            for j in tuplelist:
+                if j[1] == key:
+                    value = j[0]
+            ran = True
+        else:
+            print("test 2")
+    if ran == True:
+        person.status.pop(value)
+
 
 #day and night game loop
 
@@ -68,14 +82,14 @@ def main():
         day_count += 1
         for i in tributes_instances:
             if len(i.status) > 0:
-                status_condition(i)
+                status_condition(i,day_count)
         if len(temp_instances) == 0:
             #save()
             randomplayer(tributes_instances)
             pass
         while len(temp_instances) > 0:
             player = random.choice(temp_instances)
-            player.hp -= 40 
+            player.hp -= 10 
             
             if player.hp <= 0:
                 player.alive = False

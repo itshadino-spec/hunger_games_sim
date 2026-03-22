@@ -17,7 +17,7 @@
             "friendly",
             "turtle"
         ],
-        "status": [],
+        "status": {},
         "hp": 100,
         "alive": true
     }
