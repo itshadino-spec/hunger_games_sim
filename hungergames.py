@@ -4,10 +4,10 @@ import random
 from objects import tributes_instances, weapons_instances, events_instances
 from ai import flavour_text
 
-
+status_effects = {"poisoned": "hp decreaser" , "healthy": "hp increaser"}
 temp_instances = []
 
-def happenstance(person,happening):
+def happenstance(person,happening,day):
     event = happening.event
     name = person.name
     print("%s is attempting to %s" %(name,event))
@@ -18,15 +18,15 @@ def happenstance(person,happening):
     if any(trait in happening.traits for trait in person.traits):
         odds += 5
     if roll > odds:
-        llm_text = flavour_text(person,happening, False)
-        person.status.append(happening.fail)
-        print(llm_text)
+        #llm_text = flavour_text(person,happening, False)
+        person.status[happening.fail] = day
+        print("place holder")
+        #print(llm_text)
     else:
-        llm_text =flavour_text(person,happening, True)
-        person.status.append(happening.success)
-        print(llm_text)
-
-
+        #llm_text =flavour_text(person,happening, True)
+        person.status[happening.success] = day
+        print("place holder")
+        #print(llm_text)
 
 def save():
     tributes_data = [i.__dict__ for i in tributes_instances] 
@@ -51,13 +51,28 @@ def randomplayer(person_instances):
             temp_instances.append(person)
         j += 1
 
+def passives(person):
+    pass
+
+def combat(attacker,defender):
+    pass
+
+def status_condition(person):
+    print("hello world")
+
 #day and night game loop
 
 def main():
+    day_count = 0
     while flag(tributes_instances):
+        day_count += 1
+        for i in tributes_instances:
+            if len(i.status) > 0:
+                status_condition(i)
         if len(temp_instances) == 0:
             #save()
             randomplayer(tributes_instances)
+            pass
         while len(temp_instances) > 0:
             player = random.choice(temp_instances)
             player.hp -= 40 
@@ -68,7 +83,8 @@ def main():
                     temp_instances.clear()
                     break
             else:
-                happenstance(player,events_instances[0])
+                happenstance(player,events_instances[0],day_count)
+                pass
             temp_instances.remove(player)
     winners = [p for p in tributes_instances if p.alive]
     print(f"{winners[0].name} has won the hunger games!")

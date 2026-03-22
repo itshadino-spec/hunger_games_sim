@@ -5,7 +5,7 @@ from dataclasses import dataclass
 class Tribute:
     name: str
     traits: list
-    status: str
+    status: dict
     hp: int
     alive: bool
     def __repr__(self): return f"{self.name}"

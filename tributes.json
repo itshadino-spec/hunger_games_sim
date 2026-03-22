@@ -6,7 +6,7 @@
             "happy",
             "gyms"
         ],
-        "status": [],
+        "status": {},
         "hp": 100,
         "alive": true
     },
