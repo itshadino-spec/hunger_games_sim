@@ -2,7 +2,7 @@ import json
 import random
 
 from objects import tributes_instances, weapons_instances, events_instances
-#from ai import flavour_text
+from ai import flavour_text
 
 status_effects = {"poisoned": "hp decreaser" , "healthy": "hp increaser"}
 temp_instances = []
@@ -18,15 +18,14 @@ def happenstance(person,happening,day):
     if any(trait in happening.traits for trait in person.traits):
         odds += 5
     if roll > odds:
-        #llm_text = flavour_text(person,happening, False)
+        llm_text = flavour_text(person,happening, False)
         person.status[happening.fail] = day
         print("place holder")
-        #print(llm_text)
+        print(llm_text)
     else:
-        #llm_text =flavour_text(person,happening, True)
+        llm_text =flavour_text(person,happening, True)
         person.status[happening.success] = day
-        print("place holder")
-        #print(llm_text)
+        print(llm_text)
 
 def save():
     tributes_data = [i.__dict__ for i in tributes_instances] 
@@ -61,17 +60,21 @@ def status_condition(person,day):
     infliction_day = person.status.values()
     ran = False
     for i in infliction_day:
+        value = i
         if (day - i) >= 3:
-            key = i
             tuplelist = person.status.items()
             for j in tuplelist:
-                if j[1] == key:
-                    value = j[0]
+                if j[1] == value:
+                    key = j[0]
             ran = True
         else:
-            print("test 2")
+            if value is "hp decreaser":
+                person.hp -= 5
+            elif value is "hp increaser":
+                person.hp += 5
+            #will have to add more later
     if ran == True:
-        person.status.pop(value)
+        person.status.pop(key)
 
 
 #day and night game loop
