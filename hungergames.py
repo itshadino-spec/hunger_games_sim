@@ -83,16 +83,22 @@ def status_condition(person,day):
     if ran == True:
         person.status.pop(key)
 
+def night(person,night):
+    temp = random.randint(0,1) #temp needs to be user input later
+    if temp == 0:
+        person.status["insanity"] = night
+    else:
+        person.status["well rested"] = night
 
 #day and night game loop
 
 def main():
-    day_count = 0
+    day_night = 0
     while flag(tributes_instances):
-        day_count += 1
+        day_night += 1
         for i in tributes_instances:
             if len(i.status) > 0:
-                #status_condition(i,day_count)
+                #status_condition(i,day_night)
                 pass #temp
         if len(temp_instances) == 0:
             #save()
@@ -101,7 +107,9 @@ def main():
         while len(temp_instances) > 0:
             player = random.choice(temp_instances)
             player.hp -= 10 
-            
+            if day_night % 2 == 0:
+                print("NIGHT HAS FALLEN!")
+                night(player,day_night)
             if player.hp <= 0:
                 player.alive = False
                 if flag(tributes_instances) == False:
