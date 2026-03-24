@@ -2,9 +2,10 @@ import json
 import random
 
 from objects import tributes_instances, weapons_instances, events_instances
-from ai import flavour_text
+#from ai import flavour_text
 
 status_effects = {"poisoned": "hp decreaser" , "healthy": "hp increaser"}
+passive_traits = {"doctor": "hp increaser"}
 temp_instances = []
 
 def happenstance(person,happening,day):
@@ -18,14 +19,15 @@ def happenstance(person,happening,day):
     if any(trait in happening.traits for trait in person.traits):
         odds += 5
     if roll > odds:
-        llm_text = flavour_text(person,happening, False)
+        #llm_text = flavour_text(person,happening, False)
         person.status[happening.fail] = day
-        print("place holder")
-        print(llm_text)
+        print("placeholder1")
+        #print(llm_text)
     else:
-        llm_text =flavour_text(person,happening, True)
+        #llm_text =flavour_text(person,happening, True)
         person.status[happening.success] = day
-        print(llm_text)
+        print("placeholder2")
+        #print(llm_text)
 
 def save():
     tributes_data = [i.__dict__ for i in tributes_instances] 
@@ -51,7 +53,12 @@ def randomplayer(person_instances):
         j += 1
 
 def passives(person):
-    pass
+    traits = passive_traits.keys()
+    for i in person.traits:
+        if i in traits:
+            effect = passive_traits.get(i)
+            #temp code need if-else ladder later
+            person.hp += 5
 
 def combat(attacker,defender):
     pass
@@ -68,9 +75,9 @@ def status_condition(person,day):
                     key = j[0]
             ran = True
         else:
-            if value is "hp decreaser":
+            if value == "hp decreaser":
                 person.hp -= 5
-            elif value is "hp increaser":
+            elif value == "hp increaser":
                 person.hp += 5
             #will have to add more later
     if ran == True:
@@ -85,7 +92,8 @@ def main():
         day_count += 1
         for i in tributes_instances:
             if len(i.status) > 0:
-                status_condition(i,day_count)
+                #status_condition(i,day_count)
+                pass #temp
         if len(temp_instances) == 0:
             #save()
             randomplayer(tributes_instances)
@@ -100,8 +108,9 @@ def main():
                     temp_instances.clear()
                     break
             else:
-                happenstance(player,events_instances[0],day_count)
+                #happenstance(player,events_instances[0],day_count)
                 pass
+            passives(player)
             temp_instances.remove(player)
     winners = [p for p in tributes_instances if p.alive]
     print(f"{winners[0].name} has won the hunger games!")

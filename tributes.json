@@ -20,5 +20,16 @@
         "status": {},
         "hp": 100,
         "alive": true
+    },
+    {
+        "name": "justacamel",
+        "traits": [
+            "doctor",
+            "camel",
+            "martial arts"
+        ],
+        "status": {},
+        "hp": 100,
+        "alive": true
     }
 ]
