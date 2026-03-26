@@ -8,6 +8,7 @@ class Tribute:
     status: dict
     hp: int
     alive: bool
+    inventory: list
     def __repr__(self): return f"{self.name}"
 
 @dataclass

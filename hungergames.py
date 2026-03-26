@@ -6,6 +6,7 @@ from objects import tributes_instances, weapons_instances, events_instances
 
 status_effects = {"poisoned": "hp decreaser" , "healthy": "hp increaser"}
 passive_traits = {"doctor": "hp increaser"}
+items = {"potion" : "hp increaser"}
 temp_instances = []
 
 def happenstance(person,happening,day):
@@ -57,11 +58,11 @@ def passives(person):
     traits = passive_traits.keys()
     for i in person.traits:
         if i in traits:
-            effect = passive_traits.get(i)
+            effect_passive = passive_traits.get(i)
             #temp code need if-else ladder later
             person.hp += 5
 
-def combat(attacker,defender):
+def combat():
     pass
 
 def status_condition(person,day):
@@ -90,7 +91,28 @@ def night(person,night):
         person.status["insanity"] = night
     else:
         person.status["well rested"] = night
-        
+
+def inventory(person):
+    print(person.inventory)
+    pick = input("select an item")
+    if pick in person.inventory:
+        effect_item = items.get(pick)
+        person.hp += 20
+        print(person.hp)
+        #temp need an if ladder
+    else:
+        print("invalid item")
+        inventory(person)
+
+def turn(person, day_night):
+    choice = input(f"what will {person} do!")
+    if choice == "event":
+        happenstance(person,events_instances[0],day_night)
+    elif choice == "inventory":
+        inventory(person)
+    elif choice == "combat":
+        combat()
+      
 #day and night game loop
 
 def main():
@@ -116,7 +138,7 @@ def main():
                     temp_instances.clear()
                     break
             else:
-                happenstance(player,events_instances[0],day_night)
+                turn(player,day_night)
                 pass
             passives(player)
             temp_instances.remove(player)

@@ -8,7 +8,8 @@
         ],
         "status": {},
         "hp": 100,
-        "alive": true
+        "alive": true,
+        "inventory": ["potion"]
     },
     {
         "name": "carlbot",
@@ -19,7 +20,8 @@
         ],
         "status": {},
         "hp": 100,
-        "alive": true
+        "alive": true,
+        "inventory": ["potion"]
     },
     {
         "name": "justacamel",
@@ -30,6 +32,7 @@
         ],
         "status": {},
         "hp": 100,
-        "alive": true
+        "alive": true,
+        "inventory": ["potion"]
     }
 ]
