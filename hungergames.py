@@ -6,6 +6,7 @@ from objects import tributes_instances, weapons_instances, events_instances
 
 status_effects = {"poisoned": "hp decreaser" , "healthy": "hp increaser"}
 passive_traits = {"doctor": "hp increaser"}
+combat_traits = {"gymbro": "damage", "robot": "evasion", "chef":"flee"}
 items = {"potion" : "hp increaser"}
 temp_instances = []
 
@@ -62,8 +63,55 @@ def passives(person):
             #temp code need if-else ladder later
             person.hp += 5
 
-def combat():
-    pass
+def evasion(person):
+    evasion_odds = 25
+    keys = combat_traits.keys()
+    for i in person.traits:
+        if i in keys:
+            for j in keys:
+                if i == j:
+                    val = combat_traits.get(j)
+                    if val == "evasion":
+                        print(j)
+                        evasion_odds += 10
+    print(evasion_odds)
+    return evasion_odds
+
+def flight(attacker, defender):
+    flight_odds = 10
+    roll = random.randint(0,100)
+    keys2 = combat_traits.keys()
+    for i in defender.traits:
+        if i in keys2:
+            for j in keys2:
+                val2 = combat_traits.get(j)
+                if val2 == "flee":
+                    flight_odds += 10
+    if roll > flight_odds:
+        fight(attacker, defender) 
+def fight(attacker , defender):
+    print("temp")
+
+def combat(person):
+    flee = 0
+    roll = 0
+    defender = input(f"select a player to attack from {tributes_instances}")
+    for i in tributes_instances:
+        if i.name == defender:
+            defender_object = i
+            roll = random.randint(0,100)
+            evasion_odds = evasion(i)
+    if evasion_odds < roll:
+        print("tribute found")
+        defender_action = input("fight or flight?")
+        if defender_action == "flight":
+            flight(person,defender_object)
+        else:
+            fight(person)
+    else:
+        print("tribute could not be found")
+        
+
 
 def status_condition(person,day):
     infliction_day = person.status.values()
@@ -111,7 +159,7 @@ def turn(person, day_night):
     elif choice == "inventory":
         inventory(person)
     elif choice == "combat":
-        combat()
+        combat(person)
       
 #day and night game loop
 
