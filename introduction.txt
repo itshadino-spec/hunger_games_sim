@@ -10,4 +10,4 @@ tense, dramatic and occasionally simple fun, try to mix it up each response
 (do not include win or fail in the real response)
 win: "the renowned chef apo had his tummies a-rumbling so he jauntily walked and saw delicious berries he ate them, he ate them quickly and happily".
 fail: "even the greatest chefs can pick a poisonous berry, he ate them quickly but then sat and sat complaining about his tummy"
-keep responses to 30 words at max
+keep responses to 20 words at max

@@ -28,6 +28,7 @@ def happenstance(person,happening,day):
         person.status[happening.success] = day
         print("placeholder2")
         #print(llm_text)
+    #rewrite this into one llm call and put it into a try and accept catch
 
 def save():
     tributes_data = [i.__dict__ for i in tributes_instances] 
@@ -89,7 +90,7 @@ def night(person,night):
         person.status["insanity"] = night
     else:
         person.status["well rested"] = night
-
+        
 #day and night game loop
 
 def main():
@@ -98,8 +99,7 @@ def main():
         day_night += 1
         for i in tributes_instances:
             if len(i.status) > 0:
-                #status_condition(i,day_night)
-                pass #temp
+                status_condition(i,day_night)
         if len(temp_instances) == 0:
             #save()
             randomplayer(tributes_instances)
@@ -116,7 +116,7 @@ def main():
                     temp_instances.clear()
                     break
             else:
-                #happenstance(player,events_instances[0],day_count)
+                happenstance(player,events_instances[0],day_night)
                 pass
             passives(player)
             temp_instances.remove(player)
