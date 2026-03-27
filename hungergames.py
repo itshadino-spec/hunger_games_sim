@@ -8,7 +8,11 @@ status_effects = {"poisoned": "hp decreaser" , "healthy": "hp increaser"}
 passive_traits = {"doctor": "hp increaser"}
 combat_traits = {"gymbro": "damage", "robot": "evasion", "chef":"flee"}
 items = {"potion" : "hp increaser"}
-temp_instances = []
+
+def llm():
+    pass
+def odds():
+    pass
 
 def happenstance(person,happening,day):
     event = happening.event
@@ -32,9 +36,10 @@ def happenstance(person,happening,day):
         #print(llm_text)
     #rewrite this into one llm call and put it into a try and accept catch
 
+
 def save():
-    tributes_data = [i.__dict__ for i in tributes_instances] 
-    with open('tributes.json', 'w') as f:
+    tributes_data = [i.__dict__ for i in tributes_instances if i.alive == True] 
+    with open('temp.json', 'w') as f:
         json.dump(tributes_data,f,indent = 4)
 
 def flag(person_instances):
@@ -43,18 +48,19 @@ def flag(person_instances):
         status = person_instances[i]
         if status.alive == True:
             alive_tributes += 1
-    if alive_tributes == 1:
+    if alive_tributes <= 1:
+        print("end")
         return False
+    print("continue")
     return True
 
 def randomplayer(person_instances):
-    j = 0
-    for i in person_instances:
-        person = person_instances[j]
+    temp_instances = []
+    for i in range(len(person_instances)):
+        person = person_instances[i]
         if person.alive:
             temp_instances.append(person)
-        j += 1
-
+    return temp_instances
 def passives(person):
     traits = passive_traits.keys()
     for i in person.traits:
@@ -90,9 +96,6 @@ def flight(attacker, defender):
     if roll > flight_odds:
         fight(attacker, defender) 
 def fight(attacker , defender):
-    #check players inventory to see if they have any weapons
-    #use lethality to find the odds of victory for the attacker 
-    #update defender or attacker object to show player is dead
     attacker_odds = 60
     roll = random.randint(0,100)
     for i in attacker.inventory:
@@ -109,14 +112,14 @@ def fight(attacker , defender):
 
     if attacker_odds > roll:
         print(f"{attacker} has killed {defender}") #temp shud be a gemini call
-        defender.alive == False
+        defender.alive = False
     else:
          print(f"{defender} has killed {attacker}") #temp shud be a gemini call
-         attacker.alive == False
+         attacker.alive = False
 
 def combat(person):
     roll = 0
-    defender = input(f"select a player to attack from {tributes_instances}")
+    defender = input(f"select a player to attack from {tributes_instances}: ")
     for i in tributes_instances:
         if i.name == defender:
             defender_object = i
@@ -124,7 +127,7 @@ def combat(person):
             evasion_odds = evasion(i)
     if evasion_odds < roll:
         print("tribute found")
-        defender_action = input(f"{defender_object}: fight or flight?")
+        defender_action = input(f"{defender_object}: fight or flight?: ")
         if defender_action == "flight":
             flight(person,defender_object)
         else:
@@ -154,15 +157,18 @@ def status_condition(person,day):
         person.status.pop(key)
 
 def night(person,night):
-    temp = random.randint(0,1) #temp needs to be user input later
-    if temp == 0:
+    sleepge = input(f"{person}sleep y/n:")
+    if sleepge == "n":
         person.status["insanity"] = night
+        print(f"{person} did not rest")
     else:
         person.status["well rested"] = night
+        print(f"{person} slept")
+        return True
 
 def inventory(person):
     print(person.inventory)
-    pick = input("select an item")
+    pick = input("select an item:")
     if pick in person.inventory:
         effect_item = items.get(pick)
         person.hp += 20
@@ -173,47 +179,46 @@ def inventory(person):
         inventory(person)
 
 def turn(person, day_night):
-    choice = input(f"what will {person} do!")
-    if choice == "event":
-        happenstance(person,events_instances[0],day_night)
-    elif choice == "inventory":
-        inventory(person)
-    elif choice == "combat":
-        combat(person)
-      
+    while True:
+        choice = input(f"what will {person} do!")
+        if choice == "event":
+            happenstance(person,events_instances[0],day_night)
+        elif choice == "inventory":
+            inventory(person)
+        elif choice == "combat":
+            combat(person)
+        person.hp -= 10
+        if person.hp <= 0:
+                person.alive = False
+                if flag(tributes_instances) == False:
+                    return False
+        break
 #day and night game loop
 
 def main():
     day_night = 0
     while flag(tributes_instances):
         day_night += 1
+        if day_night % 2 == 1:
+            print("DAY HAS BEGUN")
         print(day_night)
         for i in tributes_instances:
             if len(i.status) > 0:
                 status_condition(i,day_night)
-        if len(temp_instances) == 0:
-            #save()
-            randomplayer(tributes_instances)
-            pass
-        while len(temp_instances) > 0:
-            player = random.choice(temp_instances)
-            player.hp -= 10 
+        player_turns = randomplayer(tributes_instances)
+        while len(player_turns) > 0:
+            person = random.choice(player_turns)
             if day_night % 2 == 0:
-                print("NIGHT HAS FALLEN!")
-                night(player,day_night)
-            else:
-                print("A NEW DAY HAS DAWNED")
-            if player.hp <= 0:
-                player.alive = False
-                if flag(tributes_instances) == False:
-                    temp_instances.clear()
-                    break
-            else:
-                turn(player,day_night)
-                pass
-            passives(player)
-            temp_instances.remove(player)
+                sleep = night(person,day_night)
+                if sleep:
+                    player_turns.remove(person)
+                    continue
+            if person.alive:
+                turn(person,day_night)
+            player_turns.remove(person)
+            
     winners = [p for p in tributes_instances if p.alive]
+    save()
     print(f"{winners[0].name} has won the hunger games!")
 
 if __name__ == "__main__":
