@@ -90,10 +90,31 @@ def flight(attacker, defender):
     if roll > flight_odds:
         fight(attacker, defender) 
 def fight(attacker , defender):
-    print("temp")
+    #check players inventory to see if they have any weapons
+    #use lethality to find the odds of victory for the attacker 
+    #update defender or attacker object to show player is dead
+    attacker_odds = 60
+    roll = random.randint(0,100)
+    for i in attacker.inventory:
+        for j in weapons_instances:
+            if i == j.name:
+                attacker_weapon = j
+    for i in defender.inventory:
+        for j in weapons_instances:
+            if i == j.name:
+                defender_weapon = j
+            
+    attacker_odds += attacker_weapon.lethality
+    attacker_odds -= defender_weapon.lethality
+
+    if attacker_odds > roll:
+        print(f"{attacker} has killed {defender}") #temp shud be a gemini call
+        defender.alive == False
+    else:
+         print(f"{defender} has killed {attacker}") #temp shud be a gemini call
+         attacker.alive == False
 
 def combat(person):
-    flee = 0
     roll = 0
     defender = input(f"select a player to attack from {tributes_instances}")
     for i in tributes_instances:
@@ -103,15 +124,14 @@ def combat(person):
             evasion_odds = evasion(i)
     if evasion_odds < roll:
         print("tribute found")
-        defender_action = input("fight or flight?")
+        defender_action = input(f"{defender_object}: fight or flight?")
         if defender_action == "flight":
             flight(person,defender_object)
         else:
-            fight(person)
+            fight(person,defender_object)
     else:
         print("tribute could not be found")
         
-
 
 def status_condition(person,day):
     infliction_day = person.status.values()
@@ -167,6 +187,7 @@ def main():
     day_night = 0
     while flag(tributes_instances):
         day_night += 1
+        print(day_night)
         for i in tributes_instances:
             if len(i.status) > 0:
                 status_condition(i,day_night)
@@ -180,6 +201,8 @@ def main():
             if day_night % 2 == 0:
                 print("NIGHT HAS FALLEN!")
                 night(player,day_night)
+            else:
+                print("A NEW DAY HAS DAWNED")
             if player.hp <= 0:
                 player.alive = False
                 if flag(tributes_instances) == False:

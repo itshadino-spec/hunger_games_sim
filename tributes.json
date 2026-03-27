@@ -9,7 +9,7 @@
         "status": {},
         "hp": 100,
         "alive": true,
-        "inventory": ["potion"]
+        "inventory": ["potion","bow"]
     },
     {
         "name": "carlbot",
@@ -21,7 +21,7 @@
         "status": {},
         "hp": 100,
         "alive": true,
-        "inventory": ["potion"]
+        "inventory": ["potion","bow"]
     },
     {
         "name": "justacamel",
@@ -33,6 +33,6 @@
         "status": {},
         "hp": 100,
         "alive": true,
-        "inventory": ["potion"]
+        "inventory": ["potion","bow"]
     }
 ]
