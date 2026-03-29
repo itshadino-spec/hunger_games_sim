@@ -22,10 +22,8 @@ class Weapon:
 @dataclass
 class Event:
     event: str
-    success_rate: float
-    success: str
-    fail: str
-    traits: list
+    outcomes: dict
+    traits: dict
     def __repr__(self): return f"{self.event}"
 
 tributes_instances = [Tribute(**i) for i in json.load(open('tributes.json'))]

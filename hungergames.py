@@ -11,30 +11,28 @@ items = {"potion" : "hp increaser"}
 
 def llm():
     pass
-def odds():
-    pass
+def odds(person, modifiers):
+    roll = random.randint(0,100)
+    event_mods = list(modifiers.keys())
+
+    for i in person.traits:
+        if i in event_mods:
+            roll += modifiers.get(i)
+    return roll
 
 def happenstance(person,happening,day):
-    event = happening.event
-    name = person.name
-    print("%s is attempting to %s" %(name,event))
+    rolled = odds(person, happening.traits)
+    oddtable = list(happening.outcomes.keys())
+ 
+    for i in oddtable:
+        num = int(i)
+        if rolled < num:
+            add = happening.outcomes.get(i)
 
-    odds = happening.success_rate
-    roll = random.randint(1,100)
-
-    if any(trait in happening.traits for trait in person.traits):
-        odds += 5
-    if roll > odds:
-        #llm_text = flavour_text(person,happening, False)
-        person.status[happening.fail] = day
-        print("placeholder1")
-        #print(llm_text)
+    if add in list(status_effects.keys()):
+        person.status[add] = day
     else:
-        #llm_text =flavour_text(person,happening, True)
-        person.status[happening.success] = day
-        print("placeholder2")
-        #print(llm_text)
-    #rewrite this into one llm call and put it into a try and accept catch
+        person.inventory.append(add)
 
 
 def save():
@@ -95,6 +93,7 @@ def flight(attacker, defender):
                     flight_odds += 10
     if roll > flight_odds:
         fight(attacker, defender) 
+        
 def fight(attacker , defender):
     attacker_odds = 60
     roll = random.randint(0,100)
@@ -182,7 +181,7 @@ def turn(person, day_night):
     while True:
         choice = input(f"what will {person} do!")
         if choice == "event":
-            happenstance(person,events_instances[0],day_night)
+            happenstance(person,random.choice(events_instances),day_night)
         elif choice == "inventory":
             inventory(person)
         elif choice == "combat":

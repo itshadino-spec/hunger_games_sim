@@ -4,5 +4,11 @@
         "type": "longrange",
         "traits": [],
         "lethality": 20
+    },
+    {
+        "name": "crossbow",
+        "type": "longrange",
+        "traits": [],
+        "lethality": 30
     }
 ]

@@ -1,10 +1,13 @@
 [
     {
         "event": "forage",
-        "success_rate": 50,
-        "success": "healthy status",
-        "fail": "poison status",
-        "traits": ["chef","gym rat"]
+        "outcomes": {"50":"poison" , "100":"healthy food"},
+        "traits": {"chef": 5 , "insanity": -5}
         
+    },
+    {
+        "event": "findweapon",
+        "outcomes": {"10": "bow", "100": "crossbow"},
+        "traits": {"robot": 5 , "insanity": -5}
     }
 ]
