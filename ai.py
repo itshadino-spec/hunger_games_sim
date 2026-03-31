@@ -2,12 +2,13 @@ from google import genai
 from pydantic import BaseModel, Field
 from typing import List, Optional
 from string import Template
+from objects import Weapon, Tribute, Event
 import json
 
 
-def info(person):
-    person_data = person.__dict__
-    return  person_data
+def info(objct):
+    objct_data = objct.__dict__
+    return  objct_data
 
 def reader(file_name):
     with open(file_name, 'r') as f:
@@ -69,4 +70,15 @@ def userprompt(text):
     a = generate_event('backup.txt')
     return a
 
+def flavourtext(text):
+    prompt = f"{text}\nobjectattributes"
+    for i in text:
+        if isinstance(i, (Weapon,Tribute,Event)):
+            data = info(i)
+            prompt += str(data)
+    response = chat.send_message(prompt)
+    print(response.text)
+intro = reader('introduction.txt')
 
+chat = client.chats.create(model = 'gemini-2.5-flash-lite')
+chat.send_message(intro) 

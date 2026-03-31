@@ -2,7 +2,7 @@ import json
 import random
 
 from objects import tributes_instances, weapons_instances, generate_event
-from ai import  userprompt
+from ai import  userprompt, flavourtext
 
 status_effects = {"poisoned": "hp decreaser" , "healthy": "hp increaser"}
 passive_traits = {"doctor": "hp increaser"}
@@ -15,6 +15,7 @@ def llm(person,happening):
         text = userprompt(context)
         a = genevent(text,person)
         return a
+    flavourtext(happening)
 def genevent(event_object,person):
     data = event_object.model_dump()
     with open("events.json", "w") as f:
@@ -44,7 +45,8 @@ def happenstance(person,happening,day):
         person.status[add] = day
     else:
         person.inventory.append(add)
-    print("working")
+    flavour = [person, "in the event" , happening, "had outcome", add]
+    llm(person, flavour)
 
 
 def save():
@@ -104,7 +106,11 @@ def flight(attacker, defender):
                 if val2 == "flee":
                     flight_odds += 10
     if roll > flight_odds:
-        fight(attacker, defender) 
+        fight(attacker, defender)
+        flavour = [defender, "failed to flee from", attacker]
+    else:
+        flavour = [defender, "fled from", attacker]
+    llm(attacker, flavour)
         
 def fight(attacker , defender):
     attacker_odds = 60
@@ -122,10 +128,12 @@ def fight(attacker , defender):
     attacker_odds -= defender_weapon.lethality
 
     if attacker_odds > roll:
-        print(f"{attacker} has killed {defender}") #temp shud be a gemini call
+        flavour = (f"{attacker} has killed with {attacker_weapon} {defender}") 
+        llm(attacker, flavour)
         defender.alive = False
     else:
-         print(f"{defender} has killed {attacker}") #temp shud be a gemini call
+         flavour = (f"{defender} has killed with {defender_weapon} {attacker}") 
+         llm(attacker, flavour)
          attacker.alive = False
 
 def combat(person):
@@ -137,14 +145,15 @@ def combat(person):
             roll = random.randint(0,100)
             evasion_odds = evasion(i)
     if evasion_odds < roll:
-        print("tribute found")
+        flavour = f"{defender_object} was found by {person}"
         defender_action = input(f"{defender_object}: fight or flight?: ")
         if defender_action == "flight":
             flight(person,defender_object)
         else:
             fight(person,defender_object)
     else:
-        print("tribute could not be found")
+        flavour = [defender_object, "escaped from", person]
+    llm(person, flavour)
         
 
 def status_condition(person,day): #rewrite
@@ -188,6 +197,9 @@ def inventory(person):
     else:
         print("invalid item")
         inventory(person)
+    flavour = [person, "used the" , pick]
+    llm(person, flavour)
+
 
 def turn(person, day_night):
     while True:
