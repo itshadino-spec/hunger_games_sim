@@ -1,0 +1,46 @@
+event
+    : the name of the event, it should be short preferably one word
+eg: input: "find a wild beast to eat"
+    output: "hunt"
+    input: "forage for food"
+    output: "foraging"
+    input: "look for a weapon"
+    output: "findingweapon"
+end
+
+outcomes
+    : must be formatted as a dictionary
+          key must be a string representation of a non negative integer
+          first key must be "0" and final must be "100"
+          value must either be from the valid items list of valid statuses list
+valid items = [potion, candy, sword, bow, crossbow, medkit ]
+valid statuses = [bloodloss, poison, healthy, enraged, hunger ]
+eg: input: "find a wild beast to eat"
+    output: {"0": "bloodloss", "40": "hunger", "100": "healthy"}
+    input: "forage for food"
+    output: {"0": "poisoning", "50": "poison", "100": "healthy"}
+    input: "look for a weapon"
+    output: {"10": "bow", "100": "crossbow"}
+end
+
+traits
+    : must be formatted as a dictionary
+        key must be a string which is a trait name
+        trait names must come from the valid trait name list
+        value must be an int representation of an integer
+valid traits[lucky, insanity, chef, robot, doctor,gym, hunter]
+        ALL EVENTS MUST HAVE LUCKY WITH +5
+        ALl EVENTS MUST HAVE INSANITY WITH -10
+eg: input: "find a wild beast to eat"
+    output: {"lucky":5, "insanity": -10, "hunter": 20, "gym": 10}
+    input: "forage for food"
+    output: {"lucky": 5, "insanity": -10, "hunter": 10, "chef": 20}
+    input: "look for a weapon"
+    output: {"lucky": 5, "insanity": -10, "hunter": 10, "chef": 5}
+end
+
+prompt
+    : from the given input please process and form an event
+        {USER INPUT}
+end
+

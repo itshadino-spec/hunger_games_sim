@@ -1,16 +1,25 @@
 import json
 import random
 
-from objects import tributes_instances, weapons_instances, events_instances
-#from ai import flavour_text
+from objects import tributes_instances, weapons_instances, generate_event
+from ai import  json_text
 
 status_effects = {"poisoned": "hp decreaser" , "healthy": "hp increaser"}
 passive_traits = {"doctor": "hp increaser"}
 combat_traits = {"gymbro": "damage", "robot": "evasion", "chef":"flee"}
 items = {"potion" : "hp increaser"}
 
-def llm():
-    pass
+def llm(person,happening):
+    if happening == "event":
+        try:
+            context = input("what do you wish to do")
+            text = json_text(person, context)
+            genEvent(text)
+        except:
+            save()
+def genEvent(text):
+    print(text)
+        
 def odds(person, modifiers):
     roll = random.randint(0,100)
     event_mods = list(modifiers.keys())
@@ -181,7 +190,7 @@ def turn(person, day_night):
     while True:
         choice = input(f"what will {person} do!")
         if choice == "event":
-            happenstance(person,random.choice(events_instances),day_night)
+            llm(person,"event")
         elif choice == "inventory":
             inventory(person)
         elif choice == "combat":

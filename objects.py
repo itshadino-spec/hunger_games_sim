@@ -19,13 +19,17 @@ class Weapon:
     lethality: int
     def __repr__(self): return f"{self.name}"
 
-@dataclass
-class Event:
-    event: str
-    outcomes: dict
-    traits: dict
-    def __repr__(self): return f"{self.event}"
+def generate_event():
+    @dataclass
+    class Event:
+        event: str
+        outcomes: dict
+        traits: dict
+        def __repr__(self): return f"{self.event}"
+    events_instances   = [Event(**i)   for i in json.load(open('events.json'))]
+    return events_instances
 
 tributes_instances = [Tribute(**i) for i in json.load(open('tributes.json'))]
 weapons_instances  = [Weapon(**i)  for i in json.load(open('weapons.json'))]
-events_instances   = [Event(**i)   for i in json.load(open('events.json'))]
+
+eventfunction = generate_event
