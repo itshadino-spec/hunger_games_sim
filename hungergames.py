@@ -2,7 +2,8 @@ import json
 import random
 
 from objects import tributes_instances, weapons_instances, generate_event
-from ai import  json_text
+from tables import hpincreasestatus, hpdecreasestatus, passive_traits, combatodsincrease, items
+from ai import  userprompt
 
 status_effects = {"poisoned": "hp decreaser" , "healthy": "hp increaser"}
 passive_traits = {"doctor": "hp increaser"}
@@ -13,11 +14,11 @@ def llm(person,happening):
     if happening == "event":
         try:
             context = input("what do you wish to do")
-            text = json_text(person, context)
-            genEvent(text)
+            text = userprompt(person, context)
+            genevent(text)
         except:
             save()
-def genEvent(text):
+def genevent(text):
     print(text)
         
 def odds(person, modifiers):
@@ -68,7 +69,7 @@ def randomplayer(person_instances):
         if person.alive:
             temp_instances.append(person)
     return temp_instances
-def passives(person):
+def passives(person):#rewrite
     traits = passive_traits.keys()
     for i in person.traits:
         if i in traits:
@@ -144,7 +145,7 @@ def combat(person):
         print("tribute could not be found")
         
 
-def status_condition(person,day):
+def status_condition(person,day): #rewrite
     infliction_day = person.status.values()
     ran = False
     for i in infliction_day:

@@ -40,7 +40,6 @@ eg: input: "find a wild beast to eat"
 end
 
 prompt
-    : from the given input please process and form an event
-        {USER INPUT}
+    : from the given input please process and form an event: {input}
 end
 

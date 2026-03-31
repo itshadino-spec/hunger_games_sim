@@ -38,10 +38,6 @@ class Event(BaseModel):
     outcomes: object = Field(description= description('json.text',"outcomes"))
     traits: object = Field(description= description('json.text',"traits"))
 
-def reader(file_name):
-    with open(file_name, 'r') as f:
-        content = f.read()
-        return content
     
 config = json.loads(reader('key.json'))
 api_key = config["GEMINI_API_KEY"]
@@ -61,3 +57,13 @@ def generate_event(prompt):
     event = Event.model_validate_json(response.text)
     return event
 
+def userprompt(text):
+    data = {"input": text}
+
+    with open("json.text", "r") as f:
+        content = f.read()
+        final_text = content.format(**data)
+        print(final_text)
+
+
+userprompt("do a sickass backflip")
