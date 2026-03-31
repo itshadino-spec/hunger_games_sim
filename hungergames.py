@@ -2,7 +2,6 @@ import json
 import random
 
 from objects import tributes_instances, weapons_instances, generate_event
-from tables import hpincreasestatus, hpdecreasestatus, passive_traits, combatodsincrease, items
 from ai import  userprompt
 
 status_effects = {"poisoned": "hp decreaser" , "healthy": "hp increaser"}
@@ -12,14 +11,16 @@ items = {"potion" : "hp increaser"}
 
 def llm(person,happening):
     if happening == "event":
-        try:
-            context = input("what do you wish to do")
-            text = userprompt(person, context)
-            genevent(text)
-        except:
-            save()
-def genevent(text):
-    print(text)
+        context = input("what do you wish to do")
+        text = userprompt(context)
+        a = genevent(text,person)
+        return a
+def genevent(event_object,person):
+    data = event_object.model_dump()
+    with open("events.json", "w") as f:
+        json.dump(data, f, indent = 4)
+    event_instances = generate_event()
+    return event_instances
         
 def odds(person, modifiers):
     roll = random.randint(0,100)
@@ -43,6 +44,7 @@ def happenstance(person,happening,day):
         person.status[add] = day
     else:
         person.inventory.append(add)
+    print("working")
 
 
 def save():
@@ -191,7 +193,8 @@ def turn(person, day_night):
     while True:
         choice = input(f"what will {person} do!")
         if choice == "event":
-            llm(person,"event")
+            b = llm(person,"event")
+            happenstance(person,b[0],day_night)
         elif choice == "inventory":
             inventory(person)
         elif choice == "combat":

@@ -1,13 +1,14 @@
-[
-    {
-        "event": "forage",
-        "outcomes": {"50":"poison" , "100":"healthy food"},
-        "traits": {"chef": 5 , "insanity": -5}
-        
+{
+    "event": "crying",
+    "outcomes": {
+        "0": "enraged",
+        "50": "hunger",
+        "100": "healthy"
     },
-    {
-        "event": "findweapon",
-        "outcomes": {"10": "bow", "100": "crossbow"},
-        "traits": {"robot": 5 , "insanity": -5}
+    "traits": {
+        "lucky": 5,
+        "insanity": -10,
+        "doctor": 10,
+        "robot": -20
     }
-]
+}

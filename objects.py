@@ -26,7 +26,8 @@ def generate_event():
         outcomes: dict
         traits: dict
         def __repr__(self): return f"{self.event}"
-    events_instances   = [Event(**i)   for i in json.load(open('events.json'))]
+    i = json.load(open('events.json'))
+    events_instances   = [Event(**i)]
     return events_instances
 
 tributes_instances = [Tribute(**i) for i in json.load(open('tributes.json'))]

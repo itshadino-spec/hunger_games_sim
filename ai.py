@@ -1,6 +1,7 @@
 from google import genai
 from pydantic import BaseModel, Field
 from typing import List, Optional
+from string import Template
 import json
 
 
@@ -44,14 +45,14 @@ api_key = config["GEMINI_API_KEY"]
 client = genai.Client(api_key=api_key)
 
 
-def generate_event(prompt):
-    prompt = description('json.text', prompt)
+def generate_event(file):
+    prompt = description(file, "prompt")
     response = client.models.generate_content(
         model="gemini-3-flash-preview",
         contents=prompt,
         config={
             "response_mime_type": "application/json",
-            "response_json_schema": Event.model_json_schema(),
+            "response_schema": Event.model_json_schema(),
         },
     )
     event = Event.model_validate_json(response.text)
@@ -59,11 +60,13 @@ def generate_event(prompt):
 
 def userprompt(text):
     data = {"input": text}
-
     with open("json.text", "r") as f:
         content = f.read()
-        final_text = content.format(**data)
-        print(final_text)
+    temp = Template(content)
+    final_text = temp.substitute(data)
+    with open("backup.txt", "w") as f:
+        f.write(final_text)
+    a = generate_event('backup.txt')
+    return a
 
 
-userprompt("do a sickass backflip")
