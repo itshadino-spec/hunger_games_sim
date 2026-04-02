@@ -2,21 +2,9 @@
     {
         "name": "apo",
         "traits": [
-            "chef",
-            "happy",
-            "gyms"
-        ],
-        "status": {},
-        "hp": 100,
-        "alive": true,
-        "inventory": ["potion","bow"]
-    },
-    {
-        "name": "carlbot",
-        "traits": [
-            "robot",
-            "friendly",
-            "turtle"
+            "great chef",
+            "super strength carrot",
+            "pet whale"
         ],
         "status": {},
         "hp": 100,
@@ -34,5 +22,241 @@
         "hp": 100,
         "alive": true,
         "inventory": ["potion","bow"]
+    },
+    {
+        "name": "funkier fella",
+        "traits": [
+        "stealth",
+        "super hearing",
+        "hand eye coordination"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "tallyho",
+        "traits": [
+        "fast",
+        "tuneller",
+        "insomniac"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "winter",
+        "traits": [
+        "witch doctor",
+        "high pain tolerance",
+        "summons stone"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "milky",
+        "traits": [
+        "can smell water",
+        "charismatic",
+        "chef"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "phorahg",
+        "traits": [
+        "faster healing",
+        "martial arts",
+        "knows where everyone is"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "artenyan",
+        "traits": [
+        "long range weapon",
+        "insomniac",
+        "artecorp potions"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "bird",
+        "traits": [
+        "ropemaker",
+        "feather falling",
+        "long range weapon"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "funkier fella",
+        "traits": [
+        "stealth",
+        "super hearing",
+        "hand eye coordination"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "augustus",
+        "traits": [
+        "revives birds",
+        "candymaker",
+        "cant break weapons"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "geneva checklist",
+        "traits": [
+        "can filter water",
+        "hunter",
+        "stoneweaponmaker"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "bubble nugget",
+        "traits": [
+        "botanist",
+        "agile",
+        "stealthy"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "froglonso",
+        "traits": [
+        "knifethrower",
+        "angry",
+        "turns into a rat"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "misan",
+        "traits": [
+        "lucky"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "A",
+        "traits": [
+        "frying pan expert",
+        "agile",
+        "strategist"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "lys",
+        "traits": [
+        "poison resistance",
+        "cannibal",
+        ""
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "zal",
+        "traits": [
+        "pet cat",
+        "herbalist",
+        "trap specialist"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "naruto the solar dragon",
+        "traits": [
+        "solar dragon"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "cuious",
+        "traits": [
+        "giant sleepy birds",
+        "projectile protection",
+        "fast"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "justinafrog",
+        "traits": [
+        "builds shelter",
+        "climb trees",
+        "fast"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
+    },
+    {
+        "name": "chance",
+        "traits": [
+        "poison resistance",
+        "good eyesight",
+        "good aim"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"]
     }
 ]

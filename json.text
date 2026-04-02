@@ -1,11 +1,11 @@
 event
-    : the name of the event, it should be short preferably one word
+    : the name of the event, it should be short around one sentence long
 eg: input: "find a wild beast to eat"
-    output: "hunt"
+    output: "hunt a large beast"
     input: "forage for food"
-    output: "foraging"
+    output: "foraging for food"
     input: "look for a weapon"
-    output: "findingweapon"
+    output: "finding a weapon"
 end
 
 outcomes
@@ -15,7 +15,7 @@ outcomes
           value must either be from the valid items list OR  valid statuses list
           OUTCOMES CANNOT HAVE FROM BOTH LISTS
 valid items = [potion, candy, sword, bow, crossbow, medkit ]
-valid statuses = [bloodloss, poison, healthy, enraged, hunger ]
+valid statuses = [bloodloss, poison, healthy, enraged, hunger, stinky(prevents insects and what not) ]
 eg: input: "find a wild beast to eat"
     output: {"0": "bloodloss", "40": "hunger", "100": "healthy"}
     input: "forage for food"

@@ -200,6 +200,8 @@ def inventory(person):
     flavour = [person, "used the" , pick]
     llm(person, flavour)
 
+def alliances(person):
+    pass
 
 def turn(person, day_night):
     while True:
@@ -211,6 +213,8 @@ def turn(person, day_night):
             inventory(person)
         elif choice == "combat":
             combat(person)
+        elif choice == "alliance":
+            alliances(person)
         person.hp -= 10
         if person.hp <= 0:
                 person.alive = False

@@ -1,14 +1,13 @@
 {
-    "event": "crying",
+    "event": "stepping on animal waste to deter wildlife",
     "outcomes": {
-        "0": "enraged",
-        "50": "hunger",
-        "100": "healthy"
+        "0": "healthy",
+        "30": "stinky",
+        "100": "stinky"
     },
     "traits": {
         "lucky": 5,
         "insanity": -10,
-        "doctor": 10,
-        "robot": -20
+        "hunter": 15
     }
 }
