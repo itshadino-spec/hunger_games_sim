@@ -4,10 +4,10 @@ import random
 from objects import tributes_instances, weapons_instances, generate_event
 from ai import  userprompt, flavourtext
 
-status_effects = {"poisoned": "hp decreaser" , "healthy": "hp increaser"}
-passive_traits = {"doctor": "hp increaser"}
-combat_traits = {"gymbro": "damage", "robot": "evasion", "chef":"flee"}
-items = {"potion" : "hp increaser"}
+weapon_dict = {}
+for i in weapons_instances:
+    weapon_dict[i.name] = i
+
 
 def llm(person,happening):
     if happening == "event":
@@ -16,12 +16,14 @@ def llm(person,happening):
         a = genevent(text,person)
         return a
     flavourtext(happening)
+    print("temp")
 def genevent(event_object,person):
     data = event_object.model_dump()
     with open("events.json", "w") as f:
         json.dump(data, f, indent = 4)
     event_instances = generate_event()
     return event_instances
+
         
 def odds(person, modifiers):
     roll = random.randint(0,100)
@@ -33,6 +35,7 @@ def odds(person, modifiers):
     return roll
 
 def happenstance(person,happening,day):
+    status_effects = ["enraged", "bloodloss", "insanity", "healthy", "satiated", "hunger" "poisoned" ]
     rolled = odds(person, happening.traits)
     oddtable = list(happening.outcomes.keys())
  
@@ -41,7 +44,7 @@ def happenstance(person,happening,day):
         if rolled < num:
             add = happening.outcomes.get(i)
 
-    if add in list(status_effects.keys()):
+    if add in status_effects:
         person.status[add] = day
     else:
         person.inventory.append(add)
@@ -73,67 +76,90 @@ def randomplayer(person_instances):
         if person.alive:
             temp_instances.append(person)
     return temp_instances
-def passives(person):#rewrite
-    traits = passive_traits.keys()
+def passives(person):
+    passive_regen = {"faster healing": 15, "doctor": 20}
     for i in person.traits:
-        if i in traits:
-            effect_passive = passive_traits.get(i)
-            #temp code need if-else ladder later
-            person.hp += 5
+        if i in list(passive_regen.keys()): 
+            heal = passive_regen.get(i)
+            person.hp += heal
 
 def evasion(person):
     evasion_odds = 25
-    keys = combat_traits.keys()
+    evasion_table = {"solar dragon": 5, "lucky": 5, "can hide": 10, "turns into a rat": 20, "stealthy": 15, "knows where everyone is": 50, 
+                     "tuneller": 20 , "super hearing": 10 , "supher hearing": 20 }
+    keys = list(evasion_table.keys())
     for i in person.traits:
         if i in keys:
-            for j in keys:
-                if i == j:
-                    val = combat_traits.get(j)
-                    if val == "evasion":
-                        print(j)
-                        evasion_odds += 10
+            evasion_odds += evasion_table.get(i)
     print(evasion_odds)
     return evasion_odds
 
-def flight(attacker, defender):
-    flight_odds = 10
-    roll = random.randint(0,100)
-    keys2 = combat_traits.keys()
-    for i in defender.traits:
-        if i in keys2:
-            for j in keys2:
-                val2 = combat_traits.get(j)
-                if val2 == "flee":
-                    flight_odds += 10
-    if roll > flight_odds:
-        fight(attacker, defender)
-        flavour = [defender, "failed to flee from", attacker]
-    else:
-        flavour = [defender, "fled from", attacker]
-    llm(attacker, flavour)
-        
-def fight(attacker , defender):
-    attacker_odds = 60
-    roll = random.randint(0,100)
-    for i in attacker.inventory:
-        for j in weapons_instances:
-            if i == j.name:
-                attacker_weapon = j
-    for i in defender.inventory:
-        for j in weapons_instances:
-            if i == j.name:
-                defender_weapon = j
-            
-    attacker_odds += attacker_weapon.lethality
-    attacker_odds -= defender_weapon.lethality
 
+def flight(attacker, defender):
+    roll = random.randint(0,100)
+    flight_odds = 10
+    flight_table = {"solar dragon": 5, "lucky": 5, "climb tree": 20, "can hide": 20, "turns into a rat": 10, "knows where everyone is": -20,
+                    "massive sleepy birds": -100, "agile": 20, "fast": 20, "feather falling": 20}
+    keys = flight_table.keys()
+    for i in defender.traits:
+        if i in keys:
+            flight_odds += flight_table.get(i)
+        if roll > flight_odds:
+            fight(attacker, defender)
+            flavour = [defender, "failed to flee from", attacker]
+    else:
+            flavour = [defender, "fled from", attacker]
+    llm(attacker, flavour)
+
+def weapon_damage (person, output):
+    longrangetraits = {"longrange": 15, "lucky": 5, "solar dragon": 5, "good aim": 15 }
+    throwingknives = {"knifethrower": 15}
+    fryingpan = {"fryingpan": 50}
+    maxdamage = 0
+    damage = 0
+    weapon = ""
+    for i in person.inventory:
+        if i in weapon_dict:
+            weapon_obj = weapon_dict.get(i)
+            damage = weapon_obj.lethality
+            for j in person.traits:
+                if weapon_obj.type == "longrange" and j in list(longrangetraits):
+                    damage += longrangetraits.get(j)
+                elif weapon_obj.type == "throwingknives" and j in list(throwingknives):
+                    damage += throwingknives.get(j)
+                elif weapon_obj.type == "fryingpan" and j in list(fryingpan):
+                    damage += fryingpan.get(j)
+        if damage > maxdamage:
+            maxdamage = damage
+            weapon = weapon_obj
+    if output == "name":
+        return weapon
+    else:
+        return damage
+
+def fight(attacker , defender):
+    combatstatus = {"strength": 15, "enraged": 10, "insanity": -10, "magic power": 5}
+    roll = random.randint(0,100)
+    attacker_weapon = weapon_damage(attacker,"name")
+    defender_weapon = weapon_damage(defender, "name")
+    attacker_status_bonus = sum(combatstatus[i] for i in attacker.status if i in combatstatus)
+    defender_status_bonus = sum(combatstatus[i] for i in defender.status if i in combatstatus)
+
+    attacker_odds = (weapon_damage(attacker, "damage") - weapon_damage(defender, "damage")) + (attacker_status_bonus - defender_status_bonus)
+    print(attacker_odds)
+
+    if ("projectile protection" in attacker.traits) and (defender_weapon.type == "longrange"):
+        attacker_odds += 10
+    if ("projectile protection" in defender.traits) and (attacker_weapon.type == "longrange"):
+        attacker_odds -= 10
     if attacker_odds > roll:
-        flavour = (f"{attacker} has killed with {attacker_weapon} {defender}") 
+        flavour = [attacker, "has killed with", attacker_weapon, defender, "who fought with", defender_weapon]
         llm(attacker, flavour)
         defender.alive = False
     else:
          flavour = (f"{defender} has killed with {defender_weapon} {attacker}") 
-         llm(attacker, flavour)
+         flavour = [defender, "has killed with", defender_weapon, attacker, "who fought with", attacker_weapon ]
+         llm(defender, flavour)
          attacker.alive = False
 
 def combat(person):
@@ -145,7 +171,7 @@ def combat(person):
             roll = random.randint(0,100)
             evasion_odds = evasion(i)
     if evasion_odds < roll:
-        flavour = f"{defender_object} was found by {person}"
+        flavour = [defender_object, "was found by", person]
         defender_action = input(f"{defender_object}: fight or flight?: ")
         if defender_action == "flight":
             flight(person,defender_object)
@@ -156,26 +182,17 @@ def combat(person):
     llm(person, flavour)
         
 
-def status_condition(person,day): #rewrite
-    infliction_day = person.status.values()
-    ran = False
-    for i in infliction_day:
-        value = i
-        if (day - i) >= 3:
-            tuplelist = person.status.items()
-            for j in tuplelist:
-                if j[1] == value:
-                    key = j[0]
-            ran = True
+def status_condition(person,day): 
+    hpstatus = {"very healthy": 20 ,"healthy": 10, "rested": 5, "satiated": 15 , "bloodloss": -10, "poisoned": -5, "magic power": 5}
+    inflicted_statuses = list(person.status.keys())
+    for i in inflicted_statuses:
+        val = person.status.get(i)
+        if (day - val ) >= 3:
+            person.status.pop(i)
         else:
-            if value == "hp decreaser":
-                person.hp -= 5
-            elif value == "hp increaser":
-                person.hp += 5
-            #will have to add more later
-    if ran == True:
-        person.status.pop(key)
-
+            if i in list(hpstatus.keys()):
+                person.hp += hpstatus.get(i)
+            
 def night(person,night):
     sleepge = input(f"{person}sleep y/n:")
     if sleepge == "n":
@@ -186,31 +203,36 @@ def night(person,night):
         print(f"{person} slept")
         return True
 
-def inventory(person):
+def inventory(person,day_night):
+    items = {"artecorp potions": "very healthy" , "potion": "healthy", "candy": "satiated" , "carrots": "enraged", "fish": "satiated", "witch potion": "magic power"}
     print(person.inventory)
-    pick = input("select an item:")
+    pick = input("select an item: ")
     if pick in person.inventory:
-        effect_item = items.get(pick)
-        person.hp += 20
-        print(person.hp)
-        #temp need an if ladder
+        add = items.get(pick)
+        person.status[add] = day_night
     else:
-        print("invalid item")
+        print("invalid")
         inventory(person)
-    flavour = [person, "used the" , pick]
-    llm(person, flavour)
-
 def alliances(person):
     pass
+
+def genitem(person):
+    items = {"witch doctor": "witch potion" , "artecorp potions": "artecorp potions",
+             "pet whale": "fish", "pet cat": "fish", "super strength carrots": "carrots" }
+    for i in person.traits:
+        if i in items:
+            person.inventory.append(items.get(j))
 
 def turn(person, day_night):
     while True:
         choice = input(f"what will {person} do!")
+        if day_night % 3 == 0:
+            genitem(person)
         if choice == "event":
             b = llm(person,"event")
             happenstance(person,b[0],day_night)
         elif choice == "inventory":
-            inventory(person)
+            inventory(person, day_night)
         elif choice == "combat":
             combat(person)
         elif choice == "alliance":

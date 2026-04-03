@@ -29,7 +29,61 @@ traits
         key must be a string which is a trait name
         trait names must come from the valid trait name list
         value must be an int representation of an integer
-valid traits[lucky, insanity, chef, robot, doctor,gym, hunter]
+valid traits:
+            doctor: +10 hp per day
+martial arts: +10 fight roll
+turns into a camel: +5 all rolls (generic)
+stealth: +10 evasion
+super hearing: +10 evasion
+hand eye coordination: +10 fight roll
+witch doctor: generates potion every 5 days
+pain tolerance: +10 max hp
+summon stones: +10 combat
+fast: +20 flee odds
+tunneler: +10 evasion
+insomniac: immune to insanity status
+charismatic: immune to backstab
+smell water: immune to thirst
+chef: +20 foraging events
+faster healing: +10 hp per day
+knows where everyone is: +10 evasion (generic)
+artecorp potions: potion every 5 days
+nocturnal: immune to insanity
+longrange weapons: +10 damage with ranged weapons
+makes ropes: +10 evasion (generic)
+feather falling: +20 flee odds
+good aim: +10 damage with ranged weapons
+candy: consumable item every 3 days
+cant break weapons: weapons never removed from inventory
+can revive birds: cosmetic only
+hunter: +20 hunting events, +10 combat
+waterfilter: immune to thirst
+can make stone weapons: +10 combat (generic)
+botanist: +30 foraging events
+agile: +10 flee
+stealthy: +10 evasion
+can throw knives: +10 combat
+angry: +10 combat
+turn into a rat: +10 evasion (generic)
+lucky: +5 all rolls
+solar dragon: +5 all rolls
+pet whale: food item every 3 days
+popeyes but carrot edition: carrot item every 3 days (gives strength status)
+great chef: +20 foraging
+lethal with a frying pan: +30 combat with frying pan weapon
+poison resistance: immune to poisoned status
+pet cat: fish item every 3 days
+herbalist: +20 healing/surgery events
+trap expert: +20 finding trap materials
+projectile protection: -10 bow lethality against this player
+massive sleepy bird: prevents target from fleeing in combat
+build shelter: immune to weather effects
+climb trees: +10 flee
+can hide: +10 evasion
+good eyesight: +10 all weapons
+poison resistance (chance): immune to poisoned status
+strategist: free to interpret, add boost for events that need strategic acument
+cannibal: +20 hp upon killing a player
         ALL EVENTS MUST HAVE LUCKY WITH +5
         ALl EVENTS MUST HAVE INSANITY WITH -10
 eg: input: "find a wild beast to eat"

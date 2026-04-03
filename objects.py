@@ -36,4 +36,3 @@ tributes_instances = [Tribute(**i) for i in json.load(open('tributes.json'))]
 weapons_instances  = [Weapon(**i)  for i in json.load(open('weapons.json'))]
 
 eventfunction = generate_event
-print(len(tributes_instances))

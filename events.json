@@ -1,13 +1,13 @@
 {
-    "event": "stepping on animal waste to deter wildlife",
+    "event": "mourning for the fallen",
     "outcomes": {
-        "0": "healthy",
-        "30": "stinky",
-        "100": "stinky"
+        "0": "enraged",
+        "50": "stinky",
+        "100": "healthy"
     },
     "traits": {
         "lucky": 5,
         "insanity": -10,
-        "hunter": 15
+        "insomniac": 10
     }
 }

@@ -1,5 +1,11 @@
 [
     {
+        "name": "hands",
+        "type": "shortrange",
+        "traits": [],
+        "lethality": 0
+    },
+    {
         "name": "bow",
         "type": "longrange",
         "traits": [],
@@ -10,5 +16,17 @@
         "type": "longrange",
         "traits": [],
         "lethality": 30
+    },
+    {
+        "name": "throwingknives",
+        "type": "throwingknives",
+        "traits": [],
+        "lethality": 20
+    },
+    {
+        "name": "fryingpan",
+        "type": "fryingpan",
+        "traits": [],
+        "lethality": 0
     }
 ]

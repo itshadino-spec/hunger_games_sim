@@ -77,8 +77,10 @@ def flavourtext(text):
             data = info(i)
             prompt += str(data)
     response = chat.send_message(prompt)
-    print(response.text)
+    responseresponse = f"{response.text}\n"
+    with open('hungergames.txt', 'a') as f:
+        f.write(responseresponse)
 intro = reader('introduction.txt')
 
-chat = client.chats.create(model = 'gemini-2.5-flash-lite')
+chat = client.chats.create(model = 'gemini-2.5-flash')
 chat.send_message(intro) 
