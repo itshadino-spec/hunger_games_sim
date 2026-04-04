@@ -2,6 +2,14 @@ import json
 from dataclasses import dataclass
 
 @dataclass
+class Map:
+    name: str
+    description: str
+    status_effect: str 
+    connections: list
+    def __repr__(self): return f"{self.name}"
+
+@dataclass
 class Tribute:
     name: str
     traits: list
@@ -9,6 +17,7 @@ class Tribute:
     hp: int
     alive: bool
     inventory: list
+    location: str
     def __repr__(self): return f"{self.name}"
 
 @dataclass
@@ -34,5 +43,6 @@ def generate_event():
 
 tributes_instances = [Tribute(**i) for i in json.load(open('tributes.json'))]
 weapons_instances  = [Weapon(**i)  for i in json.load(open('weapons.json'))]
-
+location_instances = [Map(**i) for i in json.load(open('map.json'))]
 eventfunction = generate_event
+

@@ -1,13 +1,15 @@
 {
-    "event": "mourning for the fallen",
+    "event": "exploring the snowy tundra and massive trees",
     "outcomes": {
-        "0": "enraged",
-        "50": "stinky",
+        "0": "bloodloss",
+        "40": "hunger",
         "100": "healthy"
     },
     "traits": {
         "lucky": 5,
         "insanity": -10,
-        "insomniac": 10
+        "hunter": 20,
+        "build shelter": 15,
+        "climb trees": 10
     }
 }

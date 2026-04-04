@@ -9,7 +9,8 @@
         "status": {},
         "hp": 100,
         "alive": true,
-        "inventory": ["potion","bow"]
+        "inventory": ["potion","bow"],
+        "location": "cornocopia"
     },
     {
         "name": "justacamel",
@@ -21,7 +22,9 @@
         "status": {},
         "hp": 100,
         "alive": true,
-        "inventory": ["potion","bow"]
+        "inventory": ["potion","bow"],
+        "location": "cornocopia"
+        
     },
     {
         "name": "funkier fella",
@@ -33,7 +36,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "tallyho",
@@ -45,7 +49,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "winter",
@@ -57,7 +62,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "milky",
@@ -69,7 +75,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "phorahg",
@@ -81,7 +88,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "artenyan",
@@ -93,7 +101,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "bird",
@@ -105,7 +114,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "funkier fella",
@@ -117,7 +127,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "augustus",
@@ -129,7 +140,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "geneva checklist",
@@ -141,7 +153,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "bubble nugget",
@@ -153,7 +166,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "froglonso",
@@ -165,7 +179,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "misan",
@@ -175,7 +190,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "A",
@@ -187,7 +203,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "lys",
@@ -199,7 +216,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "zal",
@@ -211,7 +229,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "naruto the solar dragon",
@@ -221,10 +240,11 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
-        "name": "cuious",
+        "name": "curious",
         "traits": [
         "giant sleepy birds",
         "projectile protection",
@@ -233,7 +253,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "justinafrog",
@@ -245,7 +266,8 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     },
     {
         "name": "chance",
@@ -257,6 +279,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"]
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
     }
 ]

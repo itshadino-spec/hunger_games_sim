@@ -2,7 +2,7 @@ from google import genai
 from pydantic import BaseModel, Field
 from typing import List, Optional
 from string import Template
-from objects import Weapon, Tribute, Event
+from objects import Weapon, Tribute, Event, Map, location_instances
 import json
 
 
@@ -59,7 +59,9 @@ def generate_event(file):
     event = Event.model_validate_json(response.text)
     return event
 
-def userprompt(text):
+def userprompt(person, text):
+    location = [i for i in location_instances if person.location == i.name][0]
+    text += f"\nlocation:{location.description}"
     data = {"input": text}
     with open("json.text", "r") as f:
         content = f.read()
@@ -73,7 +75,7 @@ def userprompt(text):
 def flavourtext(text):
     prompt = f"{text}\nobjectattributes"
     for i in text:
-        if isinstance(i, (Weapon,Tribute,Event)):
+        if isinstance(i, (Weapon,Tribute,Event,Map)):
             data = info(i)
             prompt += str(data)
     response = chat.send_message(prompt)

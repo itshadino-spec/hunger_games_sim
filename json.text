@@ -95,6 +95,6 @@ eg: input: "find a wild beast to eat"
 end
 
 prompt
-    : from the given input please process and form an event: $input
+    : from the given input please process and form an event, take into account the location description provided: $input
 end
 

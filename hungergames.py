@@ -1,22 +1,21 @@
 import json
 import random
 
-from objects import tributes_instances, weapons_instances, generate_event
+from objects import location_instances, tributes_instances, weapons_instances, generate_event
 from ai import  userprompt, flavourtext
 
 weapon_dict = {}
 for i in weapons_instances:
     weapon_dict[i.name] = i
 
-
 def llm(person,happening):
     if happening == "event":
         context = input("what do you wish to do")
-        text = userprompt(context)
+        text = userprompt(person,context)
         a = genevent(text,person)
         return a
     flavourtext(happening)
-    print("temp")
+    print(happening)
 def genevent(event_object,person):
     data = event_object.model_dump()
     with open("events.json", "w") as f:
@@ -170,6 +169,10 @@ def combat(person):
             defender_object = i
             roll = random.randint(0,100)
             evasion_odds = evasion(i)
+    
+    if person.location != defender_object.location:
+        flavour = [defender_object, "was in a different biome to" , person]
+        return llm(person,flavour)
     if evasion_odds < roll:
         flavour = [defender_object, "was found by", person]
         defender_action = input(f"{defender_object}: fight or flight?: ")
@@ -183,7 +186,12 @@ def combat(person):
         
 
 def status_condition(person,day): 
-    hpstatus = {"very healthy": 20 ,"healthy": 10, "rested": 5, "satiated": 15 , "bloodloss": -10, "poisoned": -5, "magic power": 5}
+    hpstatus = {"frozen": -15,"thirst": -15, "very healthy": 20 ,"healthy": 10, "rested": 5, "satiated": 15 , 
+                "bloodloss": -10, "poison": -15, "magic power": 5}
+    immunetraits = {"poison resistance": "poison", "camel": "thirst", "can smell water": "thirst", "can filter water": "thirst"}
+    for i in person.traits:
+        if i in immunetraits:
+            person.status.pop(immunetraits.get(i))
     inflicted_statuses = list(person.status.keys())
     for i in inflicted_statuses:
         val = person.status.get(i)
@@ -221,10 +229,29 @@ def genitem(person):
              "pet whale": "fish", "pet cat": "fish", "super strength carrots": "carrots" }
     for i in person.traits:
         if i in items:
-            person.inventory.append(items.get(j))
+            person.inventory.append(items.get(i))
+
+def move(person, day_night):
+    inp = input(f"{person} do you wish to move?:")
+    if inp == "y":
+        curr = [i for i in location_instances if person.location == i.name][0]
+        tomove = input((f"{curr.connections} where do you want to go?:"))
+        person.location = tomove
+        newloc = [i for i in location_instances if tomove == i.name ][0]
+        if newloc.status_effect != "none":
+            person.status[newloc.status_effect] = day_night
+            flavour = [person, "moved to", newloc, "and recieved the", newloc.status_effect]
+        else:
+            flavour = [person, "moved to", newloc]
+        llm(person, flavour)
 
 def turn(person, day_night):
     while True:
+        if "fast" in person.traits:
+            move(person, day_night)
+            move(person,day_night)
+        else:
+            move(person,day_night)
         choice = input(f"what will {person} do!")
         if day_night % 3 == 0:
             genitem(person)
