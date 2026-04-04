@@ -186,9 +186,10 @@ def combat(person):
         
 
 def status_condition(person,day): 
-    hpstatus = {"frozen": -15,"thirst": -15, "very healthy": 20 ,"healthy": 10, "rested": 5, "satiated": 15 , 
-                "bloodloss": -10, "poison": -15, "magic power": 5}
-    immunetraits = {"poison resistance": "poison", "camel": "thirst", "can smell water": "thirst", "can filter water": "thirst"}
+    hpstatus = {"frozen": -5,"thirst": -5, "very healthy": 20 ,"healthy": 10, "rested": 5, "satiated": 15 , 
+                "bloodloss": -10, "poison": -5, "magic power": 5}
+    immunetraits = {"poison resistance": "poison", "camel": "thirst", "can smell water": "thirst", 
+                    "can filter water": "thirst", "nocturnal": "insanity"}
     for i in person.traits:
         if i in immunetraits:
             person.status.pop(immunetraits.get(i))
