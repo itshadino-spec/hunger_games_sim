@@ -14,7 +14,8 @@ outcomes
           first key must be "0" and final must be "100"
           value must either be from the valid items list OR  valid statuses list
           OUTCOMES CANNOT HAVE FROM BOTH LISTS
-valid items = [potion, candy, sword, bow, crossbow, medkit ]
+valid items =  {"artecorp potions": "very healthy" , "potion": "healthy", "candy": "satiated" , "carrots": "enraged", "fish": "satiated",
+              "witch potion": "magic power"}
 valid statuses = [bloodloss, poison, healthy, enraged, hunger, stinky(prevents insects and what not) ]
 eg: input: "find a wild beast to eat"
     output: {"0": "bloodloss", "40": "hunger", "100": "healthy"}

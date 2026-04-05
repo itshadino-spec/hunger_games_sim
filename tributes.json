@@ -17,6 +17,7 @@
         "traits": [
             "doctor",
             "camel",
+            "camelcamel",
             "martial arts"
         ],
         "status": {},
@@ -44,7 +45,7 @@
         "traits": [
         "fast",
         "tuneller",
-        "insomniac"
+        "nocturnal"
     ],
     "status": {},
     "hp": 100,
@@ -95,7 +96,7 @@
         "name": "artenyan",
         "traits": [
         "long range weapon",
-        "insomniac",
+        "nocturnal",
         "artecorp potions"
     ],
     "status": {},
@@ -211,7 +212,7 @@
         "traits": [
         "poison resistance",
         "cannibal",
-        ""
+        "projectile vommit"
     ],
     "status": {},
     "hp": 100,
@@ -275,6 +276,19 @@
         "poison resistance",
         "good eyesight",
         "good aim"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "bow"],
+        "location": "cornocopia"
+    },
+    {
+        "name": "mothman",
+        "traits": [
+        "nocturnal",
+        "nightvision",
+        "can track people"
     ],
     "status": {},
     "hp": 100,

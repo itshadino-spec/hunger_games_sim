@@ -2,31 +2,133 @@
     {
         "name": "hands",
         "type": "shortrange",
-        "traits": [],
+        "status": [],
         "lethality": 0
     },
     {
         "name": "bow",
         "type": "longrange",
-        "traits": [],
+        "status": [],
         "lethality": 20
+    },
+    {
+        "name": "poison tipped bow",
+        "type": "longrange",
+        "status": ["poisoned"],
+        "lethality": 20
+    },
+    {
+        "name": "ice head bow",
+        "type": "longrange",
+        "status": [],
+        "lethality": 40
     },
     {
         "name": "crossbow",
         "type": "longrange",
-        "traits": [],
+        "status": [],
         "lethality": 30
+    },
+    {
+        "name": "poison tipped crossbow",
+        "type": "longrange",
+        "status": ["poisoned"],
+        "lethality": 30
+    },
+    {
+        "name": "ice head crossbow",
+        "type": "longrange",
+        "status": [],
+        "lethality": 50
     },
     {
         "name": "throwingknives",
         "type": "throwingknives",
-        "traits": [],
+        "status": ["bloodloss"],
         "lethality": 20
     },
     {
         "name": "fryingpan",
         "type": "fryingpan",
-        "traits": [],
+        "status": [],
+        "lethality": 0
+    },
+    {
+        "name": "hands",
+        "type": "shortrange",
+        "status": [],
+        "lethality": 0
+    },
+    {
+        "name": "flint dagger",
+        "type": "shortrange",
+        "status": ["bloodloss"],
+        "lethality": 10
+    },
+    {
+        "name": "spears",
+        "type": "longrange",
+        "status": [],
+        "lethality": 15
+    },
+    {
+        "name": "ground stone axe",
+        "type": "shortrange",
+        "status": [],
+        "lethality": 20
+    },
+    {
+        "name": "mace",
+        "type": "shortrange",
+        "status": [],
+        "lethality": 19
+    },
+    {
+        "name": "dagger",
+        "type": "shortrange",
+        "status": [],
+        "lethality": 17
+    },
+    {
+        "name": "javelin",
+        "type": "longrange",
+        "status": [],
+        "lethality": 21
+    },
+    {
+        "name": "axe",
+        "type": "shortrange",
+        "status": [],
+        "lethality": 20
+    },
+    {
+        "name": "sickle",
+        "type": "shortrange",
+        "status": [],
+        "lethality": 5
+    },
+    {
+        "name": "club",
+        "type": "shortrange",
+        "status": [],
+        "lethality": 10
+    },
+    {
+        "name": "longsword",
+        "type": "shortrange",
+        "status": [],
+        "lethality": 30
+    },
+    {
+        "name": "mythical longsword",
+        "type": "shortrange",
+        "status": [],
+        "lethality": 60
+    },
+    {
+        "name": "vommt",
+        "type": "shortrange",
+        "status": ["acid burns"],
         "lethality": 0
     }
 ]
