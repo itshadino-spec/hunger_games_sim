@@ -3,25 +3,39 @@
         "name": "cornocopia",
         "description": "starting position, weird structure in the centre with many weapons",
         "status_effect": "none",
-        "connections": ["tundra", "desert", "poisoncreek"]
+        "connections": ["tundra", "desert", "poisoncreek"],
+        "curr_weather": "none",
+        "weather_type": ["none"],
+        "trap": ["none"]
     },
     {
         "name": "tundra",
         "description": "massive trees, very cold and very strong beasts",
         "status_effect": "frozen",
-        "connections": ["cornocopia", "desert", "poisoncreek"]
+        "connections": ["cornocopia", "desert", "poisoncreek"],
+        "curr_weather": "none",
+        "weather_type": ["extreme snow", "polar night", "avalanche", "aurora", "thick snow layers"],
+        "trap": ["none"]
     },
         {
         "name": "desert",
         "description": "starting position ,nearly no food ",
         "status_effect": "thirst",
-        "connections": ["cornocopia", "tundra", "poisoncreek"]
+        "connections": ["cornocopia", "tundra", "poisoncreek"],
+        "curr_weather": "none",
+        "weather_type": ["drought", "heavy rains", "extreme heat", "pleasant night", "mirage"],
+        "trap": ["none"]
+
     },
         {
         "name": "poisoncreek",
         "description": "lush with wild life,flaura and fauna yet",
         "status_effect": "poison",
-        "connections": ["cornocopia", "desert", "tundra"]
+        "connections": ["cornocopia", "desert", "tundra"],
+        "curr_weather": "none",
+        "weather_type":["flood", "slope failure", "mist", "thick fog", "lushlife"],
+        "trap": ["none"]
+        
     }
 ]
 

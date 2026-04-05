@@ -95,6 +95,7 @@ eg: input: "find a wild beast to eat"
 end
 
 prompt
-    : from the given input please process and form an event, take into account the location description provided: appreciate the cold snowy tundramassive trees, very cold and very strong beasts
+    : from the given input please process and form an event, take into account the location description provided: hunt a wild beast
+location:massive trees, very cold and very strong beasts
 end
 

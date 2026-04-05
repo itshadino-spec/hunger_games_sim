@@ -1,5 +1,5 @@
 {
-    "event": "exploring the snowy tundra and massive trees",
+    "event": "hunting a powerful beast among the massive frozen trees",
     "outcomes": {
         "0": "bloodloss",
         "40": "hunger",
@@ -9,7 +9,6 @@
         "lucky": 5,
         "insanity": -10,
         "hunter": 20,
-        "build shelter": 15,
-        "climb trees": 10
+        "angry": 10
     }
 }

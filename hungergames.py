@@ -191,7 +191,7 @@ def status_condition(person,day):
     immunetraits = {"poison resistance": "poison", "camel": "thirst", "can smell water": "thirst", 
                     "can filter water": "thirst", "nocturnal": "insanity"}
     for i in person.traits:
-        if i in immunetraits:
+        if (i in immunetraits) and immunetraits.get(i) in person.status:
             person.status.pop(immunetraits.get(i))
     inflicted_statuses = list(person.status.keys())
     for i in inflicted_statuses:
@@ -246,8 +246,16 @@ def move(person, day_night):
             flavour = [person, "moved to", newloc]
         llm(person, flavour)
 
+def weather():
+    print("run")
+    for i in location_instances:
+        if random.randint(1,5) == 5:
+            i.curr_weather = random.choice(i.weather_type)
+            print(i.curr_weather)
+
 def turn(person, day_night):
     while True:
+        
         if "fast" in person.traits:
             move(person, day_night)
             move(person,day_night)
@@ -277,6 +285,7 @@ def main():
     day_night = 0
     while flag(tributes_instances):
         day_night += 1
+        weather()
         if day_night % 2 == 1:
             print("DAY HAS BEGUN")
         print(day_night)

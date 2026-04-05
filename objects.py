@@ -7,6 +7,9 @@ class Map:
     description: str
     status_effect: str 
     connections: list
+    curr_weather: str
+    weather_type: list
+    trap: list
     def __repr__(self): return f"{self.name}"
 
 @dataclass
