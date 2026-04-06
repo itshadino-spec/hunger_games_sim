@@ -1,5 +1,5 @@
 {
-    "event": "hunting a powerful beast among the massive frozen trees",
+    "event": "scavenge for frozen berries beneath the roots of massive tundra trees",
     "outcomes": {
         "0": "bloodloss",
         "40": "hunger",
@@ -8,7 +8,7 @@
     "traits": {
         "lucky": 5,
         "insanity": -10,
-        "hunter": 20,
-        "angry": 10
+        "botanist": 30,
+        "chef": 20
     }
 }

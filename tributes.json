@@ -9,7 +9,7 @@
         "status": {},
         "hp": 100,
         "alive": true,
-        "inventory": ["potion","bow"],
+        "inventory": ["potion","bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -23,7 +23,7 @@
         "status": {},
         "hp": 100,
         "alive": true,
-        "inventory": ["potion","bow"],
+        "inventory": ["potion","bow", "bear trap"],
         "location": "cornocopia"
         
     },
@@ -37,7 +37,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -50,7 +50,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -63,7 +63,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -76,7 +76,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -89,7 +89,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -102,7 +102,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -115,7 +115,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -128,7 +128,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -141,7 +141,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -154,7 +154,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -167,7 +167,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -180,7 +180,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -191,7 +191,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -204,7 +204,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -217,7 +217,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -230,7 +230,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -241,7 +241,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -254,7 +254,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -267,7 +267,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -280,7 +280,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     },
     {
@@ -293,7 +293,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow"],
+    "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia"
     }
 ]

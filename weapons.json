@@ -63,43 +63,43 @@
         "name": "flint dagger",
         "type": "shortrange",
         "status": ["bloodloss"],
-        "lethality": 10
+        "lethality": 15
     },
     {
         "name": "spears",
         "type": "longrange",
         "status": [],
-        "lethality": 15
+        "lethality": 25
     },
     {
         "name": "ground stone axe",
         "type": "shortrange",
         "status": [],
-        "lethality": 20
+        "lethality": 45
     },
     {
         "name": "mace",
         "type": "shortrange",
         "status": [],
-        "lethality": 19
+        "lethality": 40
     },
     {
         "name": "dagger",
         "type": "shortrange",
         "status": [],
-        "lethality": 17
+        "lethality": 25
     },
     {
         "name": "javelin",
         "type": "longrange",
         "status": [],
-        "lethality": 21
+        "lethality": 30
     },
     {
         "name": "axe",
         "type": "shortrange",
         "status": [],
-        "lethality": 20
+        "lethality": 35
     },
     {
         "name": "sickle",
@@ -127,7 +127,7 @@
     },
     {
         "name": "vommt",
-        "type": "shortrange",
+        "type": "vommit",
         "status": ["acid burns"],
         "lethality": 0
     }

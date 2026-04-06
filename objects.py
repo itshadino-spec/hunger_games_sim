@@ -49,3 +49,4 @@ weapons_instances  = [Weapon(**i)  for i in json.load(open('weapons.json'))]
 location_instances = [Map(**i) for i in json.load(open('map.json'))]
 eventfunction = generate_event
 
+print(weapons_instances)

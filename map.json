@@ -15,7 +15,7 @@
         "connections": ["cornocopia", "desert", "poisoncreek"],
         "curr_weather": "none",
         "weather_type": ["extreme snow", "polar night", "avalanche", "aurora", "thick snow layers"],
-        "trap": ["none"]
+        "trap": []
     },
         {
         "name": "desert",
@@ -24,17 +24,17 @@
         "connections": ["cornocopia", "tundra", "poisoncreek"],
         "curr_weather": "none",
         "weather_type": ["drought", "heavy rains", "extreme heat", "pleasant night", "mirage"],
-        "trap": ["none"]
+        "trap": []
 
     },
         {
         "name": "poisoncreek",
-        "description": "lush with wild life,flaura and fauna yet",
+        "description": "lush with wild life,flaura and fauna yet much is poisonous",
         "status_effect": "poison",
         "connections": ["cornocopia", "desert", "tundra"],
         "curr_weather": "none",
         "weather_type":["flood", "slope failure", "mist", "thick fog", "lushlife"],
-        "trap": ["none"]
+        "trap": []
         
     }
 ]
