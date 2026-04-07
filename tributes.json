@@ -51,7 +51,7 @@
         "summons stone"
     ],
     "status": {},
-    "hp": 100,
+    "hp": 110,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
         "location": "cornocopia",
@@ -200,7 +200,7 @@
         "traits": [
         "frying pan expert",
         "agile",
-        "strategist"
+        "charismatic"
     ],
     "status": {},
     "hp": 100,
@@ -252,7 +252,7 @@
     {
         "name": "curious",
         "traits": [
-        "giant sleepy birds",
+        "massive sleepy birds",
         "projectile protection",
         "fast"
     ],
