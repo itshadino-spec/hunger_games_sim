@@ -21,6 +21,7 @@ class Tribute:
     alive: bool
     inventory: list
     location: str
+    alliance: list
     def __repr__(self): return f"{self.name}"
 
 @dataclass
@@ -49,4 +50,3 @@ weapons_instances  = [Weapon(**i)  for i in json.load(open('weapons.json'))]
 location_instances = [Map(**i) for i in json.load(open('map.json'))]
 eventfunction = generate_event
 
-print(len(tributes_instances))

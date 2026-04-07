@@ -303,7 +303,7 @@ def status_condition(person,day):
                 person.alive = False
                 flavour = [person, "died due to the extreme heat of the desert"]
                 llm(person,flavour)
-        elif i == "mirage" or "cant move":
+        elif i == "mirage" or i == "cant move":
             person.status.pop(i)
         elif i == "lethal damage taken":
             person.alive = False
@@ -364,7 +364,7 @@ def genitem(person):
 def move(person, day_night, weatherdict):
     print(weatherdict)
     if "snow" in person.status:
-        flavor = [person, "cannot exit the tundra due to the snow"]
+        flavour = [person, "cannot exit the tundra due to the snow"]
         return llm(person, flavour)
     locs = ["tundra","desert","poisoncreek", "cornocopia"]
     curr = [i for i in location_instances if person.location == i.name][0]
@@ -431,7 +431,7 @@ def weather(day):
         elif i.location == "desert":
             curr = weather_dict.get("desert")
             if curr != "none":
-                if (curr == ("drought" or "extreme heat")) and ("camel" in i.traits):
+                if (((curr == "drought") or (curr == "extreme head")) and ("camel" in i.traits)):
                     continue 
                 i.status[desert.get(curr)] = day
                 flavour = [i, "recieved the", curr, "status effect as he was in", i.location]
@@ -444,27 +444,82 @@ def weather(day):
             llm(i,flavour)
     return weather_dict 
             
-def trade(person):
-    a = input(f"{tributes_instances}\n {person} choose a player to trade with")
-    for i in tributes_instances:
-        if i.name == a:
-            trader = i
+
+def alliances(person,day):
+
+    def formalliance():
+        strangers = [i for i in tributes_instances if i.location == person.location]
+        while True:
+            ally = input(f"{strangers} who do you wish to form an alliance with?")
+            for i in tributes_instances:
+                target = next((t for t in tributes_instances if t.name == ally), None)
+            if target and target.name != person.name:
+                if target not in person.alliance:
+                    person.alliance.append(target)
+                    target.alliance.append(person)
+                    print(f"Alliance formed with {target.name}")
+                return 
+            else:
+                print("invalid")
     
-    take = input(f"{trader.inventory} {trader.name}inventory: ")
-    give = input(f"{person.inventory} {person.name}inventory: ")
+    def trade(person):
+        a = input(f"{tributes_instances}\n {person} choose a player to trade with")
+        for i in tributes_instances:
+            if i.name == a:
+                trader = i
+    
+        take = input(f"{trader.inventory} {trader.name}inventory: ")
+        give = input(f"{person.inventory} {person.name}inventory: ")
 
-    confirm = input("confirmation")
-    if confirm == "y":
-        trader.inventory.append(give)
-        trader.inventory.remove(take)
-        person.inventory.append(take)
-        person.inventory.remove(give)
-        flavour = [person, "gave", give, "and recieved from", trader, take]
-        llm(person,flavour)
+        confirm = input("confirmation")
+        if confirm == "y":
+            trader.inventory.append(give)
+            trader.inventory.remove(take)
+            person.inventory.append(take)
+            person.inventory.remove(give)
+            flavour = [person, "gave", give, "and recieved from", trader, take]
+            llm(person,flavour)
+    
+    def backstab(person):
+        if day % 2 == 1:
+            print("backstabbing can only occur when night falls")
+            return
+        backstabbed = input(f"{person.alliance} select player to backstab")
+        for i in tributes_instances:
+            if i.name == backstabbed:
+                backstabb = i
+            else: return
+        
+        if "charismatic" in backstabb.traits:
+            flavour = [backstabb, "staved off an attack from an ally"]
+            llm(backstabb,flavour)
+            return
+        
+        if random.randint(0,5) == 5:
+            person.alive = False
+            flavour = [person ,"tried to backstab", backstabb, "and was killed"]
+        else:
+            backstabb.alive = False
+            flavour = [backstabb ,"was killed by an ally"]
+        llm(backstabb,flavour)
 
+    choice = input(f"{person} do you want to add allies")
+    if choice == "yes":
+        formalliance()
+    else:
+        flavour = [person, "has formed an alliance", person.alliance]
+    
+
+    allianceaction = input("what action do you want to do with your alliance")
+    if allianceaction == "trade":
+        trade(person)
+    elif allianceaction == "backstab":
+        backstab(person)
+    llm(person,flavour)
+    
 def turn(person, day_night, weatherdict):
     while True:
-        movechoice = input(f"{person}do you want to move")
+        movechoice = input(f"{person} do you want to move")
         if "fast" in person.traits and movechoice == "yes":
             move(person, day_night, weatherdict)
             move(person, day_night, weatherdict)
@@ -483,8 +538,9 @@ def turn(person, day_night, weatherdict):
             inventory(person, day_night)
         elif choice == "combat":
             combat(person,day_night)
-        elif choice == "trade":
-            trade(person)
+        elif choice == "ally":
+            print("ran")
+            alliances(person,day_night)
         else:
             print("invalid try again")
             turn(person,day_night, weather)
@@ -495,7 +551,6 @@ def turn(person, day_night, weatherdict):
                     return False
         break
 
-#day and night game loop
 def main():
     day_night = 0
     while flag(tributes_instances):

@@ -10,7 +10,8 @@
         "hp": 100,
         "alive": true,
         "inventory": ["potion","bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "justacamel",
@@ -24,7 +25,8 @@
         "hp": 100,
         "alive": true,
         "inventory": ["potion","bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
         
     },
     {
@@ -38,7 +40,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "winter",
@@ -51,7 +54,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "milky",
@@ -64,7 +68,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "phorahg",
@@ -77,7 +82,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "artenyan",
@@ -90,7 +96,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "bird",
@@ -103,7 +110,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "funkier fella",
@@ -116,7 +124,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "augustus",
@@ -129,7 +138,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "geneva checklist",
@@ -142,7 +152,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "bubble nugget",
@@ -155,7 +166,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "froglonso",
@@ -168,7 +180,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "misan",
@@ -179,7 +192,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "A",
@@ -192,7 +206,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "lys",
@@ -205,7 +220,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "zal",
@@ -218,7 +234,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "naruto the solar dragon",
@@ -229,7 +246,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "curious",
@@ -242,7 +260,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "justinafrog",
@@ -255,7 +274,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "chance",
@@ -268,7 +288,8 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     },
     {
         "name": "mothman",
@@ -281,6 +302,7 @@
     "hp": 100,
     "alive": true,
     "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
+        "location": "cornocopia",
+        "alliance": []
     }
 ]
