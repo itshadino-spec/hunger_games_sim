@@ -49,7 +49,7 @@ client = genai.Client(api_key=api_key)
 def generate_event(file):
     prompt = description(file, "prompt")
     response = client.models.generate_content(
-        model="gemini-3-flash-preview",
+        model="gemini-2.5-flash-lite",
         contents=prompt,
         config={
             "response_mime_type": "application/json",
@@ -73,7 +73,8 @@ def userprompt(person, text):
     return a
 
 def flavourtext(text):
-    prompt = f"{text}\nobjectattributes"
+    pass
+    """prompt = f"{text}\nobjectattributes"
     for i in text:
         if isinstance(i, (Weapon,Tribute,Event,Map)):
             data = info(i)
@@ -85,4 +86,4 @@ def flavourtext(text):
 intro = reader('introduction.txt')
 
 chat = client.chats.create(model = 'gemini-2.5-flash')
-chat.send_message(intro) 
+chat.send_message(intro) """

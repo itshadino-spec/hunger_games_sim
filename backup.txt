@@ -1,5 +1,6 @@
 event
-    : the name of the event, it should be short around one sentence long
+    : the name of the event, it should be short around one sentence long, all events that result in a weapon transformation should be named
+    transform: weapon to transformed weapon
 eg: input: "find a wild beast to eat" location: "tundra: massive trees, very cold and very strong beasts"
     output: "hunt a frost beast through the frozen pines"
     input: "forage for food" location: "poisoncreek: lush with wild life, flora and fauna yet much is poisonous"
@@ -9,7 +10,7 @@ eg: input: "find a wild beast to eat" location: "tundra: massive trees, very col
     input: "find food" location: "desert: starting position, nearly no food"
     output: "desperately search the barren dunes for scraps"
     input: "do a magical spell to transform the longsword location: tundra: massive trees, very cold and very strong beasts"
-    output: "use arcane magic on the longsword"
+    output: "transform: longsword to magical longsword"
     input: "find material for a trap a player location:cornocpia weird structure in the centre with many weapons"
     output: "scrounge the cornocopia for trap material"
 end
@@ -18,14 +19,15 @@ outcomes
     : must be formatted as a dictionary
           key must be a string representation of a non negative integer
           first key must be "0" and final must be "100"
-          value must be from the valid items list OR valid statuses list OR valid weapons OR valid weapon transformations OR vaalid traps
+          value must be from the valid items list OR valid statuses list OR valid weapons 
+          OR valid weapon transformations OR valid traps
           OUTCOMES CANNOT BE FROM MORE THAN ONE LISTS
           outcomes must reflect the location context
 valid items = {"artecorp potions": "very healthy", "potion": "healthy", "candy": "satiated", 
 "carrots": "enraged", "fish": "satiated", "witch potion": "magic power"}
 valid traps = ["bear trap","explosive","poison dart trap", "spike pit"]
 valid statuses = [bloodloss, poison, healthy, enraged, hunger, stinky]
-[hands, bow  crossbow throwingknives, fryingpan,
+valid weapons: [hands, bow  crossbow throwingknives, fryingpan,
  flint dagger, spears, ground stone axe, mace, dagger, javelin, axe, sickle, club, longsword,]
  valid weapon transformations: [ice head bow, poison tipped bow, mythical longsword, ice head crossbow, poison tipped crossbow]
 eg: input: "find a wild beast to eat" location: "tundra: massive trees, very cold and very strong beasts"
@@ -36,8 +38,10 @@ eg: input: "find a wild beast to eat" location: "tundra: massive trees, very col
     output: {"10": "bow", "100": "crossbow"}
     input: "find food" location: "desert: starting position, nearly no food"
     output: {"0": "hunger", "20": "bloodloss", "100": "healthy"}
+    input: "tranform bow to ice head bow location:tundra massive trees, very cold and very strong beasts"
+    output: {"0":"bow", "100": "ice head bow"}
     input: "do a magical spell to transform the longsword location: tundra: massive trees, very cold and very strong beasts"
-    output: {"0": "broken sword", "80":"longsword", "100": "mythical longsword"}
+    output: {"0":"longsword", "100": "mythical longsword"}
     input: "find material for a trap a player location:cornocpia weird structure in the centre with many weapons"
     output: {"0": "bear trap", "60": "poison dart trap" "99": "spike pit": "100": "explosive}
 end
@@ -102,12 +106,13 @@ good eyesight: +10 all weapons
 poison resistance (chance): immune to poisoned status
 strategist: free to interpret, add boost for events that need strategic acument
 cannibal: +20 hp upon killing a player
+great chef: +40 on all foraging related activities
         ALL EVENTS MUST HAVE LUCKY WITH +5
         ALL EVENTS MUST HAVE INSANITY WITH -10
 eg: input: "find a wild beast to eat" location: "tundra: massive trees, very cold and very strong beasts"
     output: {"lucky": 5, "insanity": -10, "hunter": 20, "martial arts": 10}
     input: "forage for food" location: "poisoncreek: lush with wild life, flora and fauna yet much is poisonous"
-    output: {"lucky": 5, "insanity": -10, "botanist": 30, "chef": 20}
+    output: {"lucky": 5, "insanity": -10, "botanist": 30, "chef": 20, "great chef": 40}
     input: "look for a weapon" location: "cornocopia: starting position, weird structure in the centre with many weapons"
     output: {"lucky": 5, "insanity": -10, "strategist": 10}
     input: "find food" location: "desert: starting position, nearly no food"
@@ -119,6 +124,6 @@ eg: input: "find a wild beast to eat" location: "tundra: massive trees, very col
 end
 
 prompt
-    : from the given input please process and form an event, take into account the location description provided: forage for berries
-location:massive trees, very cold and very strong beasts
+    : from the given input please process and form an event, take into account the location description provided: transform a bow into an ice head bow
+location:starting position, weird structure in the centre with many weapons
 end

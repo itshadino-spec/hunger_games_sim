@@ -14,8 +14,9 @@ def llm(person,happening):
         text = userprompt(person,context)
         a = genevent(text,person)
         return a
-    flavourtext(happening)
+    #flavourtext(happening)
     print(happening)
+
 def genevent(event_object,person):
     data = event_object.model_dump()
     with open("events.json", "w") as f:
@@ -40,6 +41,30 @@ def odds(person, modifiers,day,name):
         roll += 10
     return roll
 
+def weapontransform(person, outcomes, add, happening):
+    transformations = {"poison tipped bow": "poisoncreek", "ice head bow": "tundra",
+                       "poison tipped crossbow": "poincreek", "ice head crossbow": "tundra" }
+    if outcomes.get("100") in transformations:
+        if person.location != transformations.get(outcomes.get("100")):
+            flavour = [person, "incorrect location for the modfication", happening]
+            return llm(person,flavour)
+        
+    transformandbase = ["poison tipped bow", "ice head bow","poison tipped crossbow", "ice head crossbow",
+                         "mythical longsword"]
+    
+    if outcomes.get("0") in person.inventory:
+    
+        if (add in transformandbase):
+            person.inventory.append(add)
+            person.inventory.remove(outcomes.get("0"))
+            flavour = [person, "transformed their weapon", happening]
+
+        else:
+            flavour = [person, "destroyed their weapon", add, happening]
+            person.inventory.remove(add)
+    return llm(person,flavour)
+        
+
 def happenstance(person,happening,day):
     status_effects = ["enraged", "bloodloss", "insanity", "healthy", "satiated", "hunger" "poisoned" ]
     rolled = odds(person, happening.traits,day,happening.event)
@@ -49,6 +74,8 @@ def happenstance(person,happening,day):
         num = int(i)
         if rolled > num:
             add = happening.outcomes.get(i)
+    if "transform" in happening.event:
+        return weapontransform(person,happening.outcomes,add,happening)
 
     if add in status_effects:
         person.status[add] = day
@@ -417,14 +444,32 @@ def weather(day):
             llm(i,flavour)
     return weather_dict 
             
+def trade(person):
+    a = input(f"{tributes_instances}\n {person} choose a player to trade with")
+    for i in tributes_instances:
+        if i.name == a:
+            trader = i
+    
+    take = input(f"{trader.inventory} {trader.name}inventory: ")
+    give = input(f"{person.inventory} {person.name}inventory: ")
 
-def turn(person, day_night, weather):
+    confirm = input("confirmation")
+    if confirm == "y":
+        trader.inventory.append(give)
+        trader.inventory.remove(take)
+        person.inventory.append(take)
+        person.inventory.remove(give)
+        flavour = [person, "gave", give, "and recieved from", trader, take]
+        llm(person,flavour)
+
+def turn(person, day_night, weatherdict):
     while True:
-        if "fast" in person.traits:
-            move(person, day_night,weather)
-            move(person,day_night,weather)
-        else:
-            move(person,day_night,weather)
+        movechoice = input(f"{person}do you want to move")
+        if "fast" in person.traits and movechoice == "yes":
+            move(person, day_night, weatherdict)
+            move(person, day_night, weatherdict)
+        elif movechoice == "yes":
+            move(person, day_night, weatherdict)
         if "cant move" in person.status:
             print(f"{person} is unable to move")
             break
@@ -438,20 +483,24 @@ def turn(person, day_night, weather):
             inventory(person, day_night)
         elif choice == "combat":
             combat(person,day_night)
-        elif choice == "alliance":
-            alliances(person)
+        elif choice == "trade":
+            trade(person)
+        else:
+            print("invalid try again")
+            turn(person,day_night, weather)
         person.hp -= 10
         if person.hp <= 0:
                 person.alive = False
                 if flag(tributes_instances) == False:
                     return False
         break
-#day and night game loop
 
+#day and night game loop
 def main():
     day_night = 0
     while flag(tributes_instances):
         day_night += 1
+        save()
         weather_dict = weather(day_night)
         if day_night % 2 == 1:
             print("DAY HAS BEGUN")

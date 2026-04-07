@@ -1,14 +1,11 @@
 {
-    "event": "scavenge for frozen berries beneath the roots of massive tundra trees",
+    "event": "transform: bow to ice head bow",
     "outcomes": {
-        "0": "bloodloss",
-        "40": "hunger",
-        "100": "healthy"
+        "0": "bow",
+        "100": "ice head bow"
     },
     "traits": {
         "lucky": 5,
-        "insanity": -10,
-        "botanist": 30,
-        "chef": 20
+        "insanity": -10
     }
 }

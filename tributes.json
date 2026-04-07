@@ -28,19 +28,6 @@
         
     },
     {
-        "name": "funkier fella",
-        "traits": [
-        "stealth",
-        "super hearing",
-        "hand eye coordination"
-    ],
-    "status": {},
-    "hp": 100,
-    "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
-        "location": "cornocopia"
-    },
-    {
         "name": "tallyho",
         "traits": [
         "fast",
