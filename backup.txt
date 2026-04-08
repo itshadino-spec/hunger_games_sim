@@ -18,16 +18,15 @@ end
 outcomes
     : must be formatted as a dictionary
           key must be a string representation of a non negative integer
-          first key must be "0" and final must be "100"
+          first key must be "0" and  and final must be "100"
           value must be from the valid items list OR valid statuses list OR valid weapons 
           OR valid weapon transformations OR valid traps
           OUTCOMES CANNOT BE FROM MORE THAN ONE LISTS
           outcomes must reflect the location context
-valid items = {"artecorp potions": "very healthy", "potion": "healthy", "candy": "satiated", 
-"carrots": "enraged", "fish": "satiated", "witch potion": "magic power"}
+valid items = artecorp potions, potion, candy ,carrots, fish, witch potions, full restore
 valid traps = ["bear trap","explosive","poison dart trap", "spike pit"]
 valid statuses = [bloodloss, poison, healthy, enraged, hunger, stinky]
-valid weapons: [hands, bow  crossbow throwingknives, fryingpan,
+valid weapons: [stick, bow,  crossbow, throwingknives, fryingpan,
  flint dagger, spears, ground stone axe, mace, dagger, javelin, axe, sickle, club, longsword,]
  valid weapon transformations: [ice head bow, poison tipped bow, mythical longsword, ice head crossbow, poison tipped crossbow]
 eg: input: "find a wild beast to eat" location: "tundra: massive trees, very cold and very strong beasts"
@@ -35,11 +34,11 @@ eg: input: "find a wild beast to eat" location: "tundra: massive trees, very col
     input: "forage for food" location: "poisoncreek: lush with wild life, flora and fauna yet much is poisonous"
     output: {"0": "poison", "40": "hunger", "100": "healthy"}
     input: "look for a weapon" location: "cornocopia: starting position, weird structure in the centre with many weapons"
-    output: {"10": "bow", "100": "crossbow"}
+    output: {"0": "stick", "20": "mace", "30": "javelin", "40", "50", "bow", "70":  "90": "crossbow","100": "longsword"}
     input: "find food" location: "desert: starting position, nearly no food"
     output: {"0": "hunger", "20": "bloodloss", "100": "healthy"}
     input: "tranform bow to ice head bow location:tundra massive trees, very cold and very strong beasts"
-    output: {"0":"bow", "100": "ice head bow"}
+    output: {"0":"bow", "60": "ice head bow"}
     input: "do a magical spell to transform the longsword location: tundra: massive trees, very cold and very strong beasts"
     output: {"0":"longsword", "100": "mythical longsword"}
     input: "find material for a trap a player location:cornocpia weird structure in the centre with many weapons"
@@ -88,7 +87,7 @@ can throw knives: +10 combat
 angry: +10 combat
 turn into a rat: +10 evasion (generic)
 lucky: +5 all rolls
-solar dragon: +5 all rolls
+solar dragon: random number from 0 to 30
 pet whale: food item every 3 days
 popeyes but carrot edition: carrot item every 3 days
 great chef: +20 foraging
@@ -110,20 +109,20 @@ great chef: +40 on all foraging related activities
         ALL EVENTS MUST HAVE LUCKY WITH +5
         ALL EVENTS MUST HAVE INSANITY WITH -10
 eg: input: "find a wild beast to eat" location: "tundra: massive trees, very cold and very strong beasts"
-    output: {"lucky": 5, "insanity": -10, "hunter": 20, "martial arts": 10}
+    output: {"lucky": 5, "insanity": -10, "hunter": 20, "martial arts": 10, "solar dragon":5 }
     input: "forage for food" location: "poisoncreek: lush with wild life, flora and fauna yet much is poisonous"
-    output: {"lucky": 5, "insanity": -10, "botanist": 30, "chef": 20, "great chef": 40}
+    output: {"lucky": 5, "insanity": -10, "botanist": 30, "chef": 20, "great chef": 40,"solar dragon":10 }
     input: "look for a weapon" location: "cornocopia: starting position, weird structure in the centre with many weapons"
-    output: {"lucky": 5, "insanity": -10, "strategist": 10}
+    output: {"lucky": 5, "insanity": -10, "strategist": 10,"solar dragon": }
     input: "find food" location: "desert: starting position, nearly no food"
-    output: {"lucky": 5, "insanity": -10, "hunter": 10, "chef": 15}
+    output: {"lucky": 5, "insanity": -10, "hunter": 10, "chef": 15,"solar dragon": }
     input: "do a magical spell to transform the longsword location: tundra: massive trees, very cold and very strong beasts"
-    output: {"lucky":5, "insanity" -5,}
+    output: {"lucky":5, "insanity" -5,,"solar dragon": }
     input: "find material for a trap a player location:cornocpia weird structure in the centre with many weapons"
-    output:  {"lucky":5, "insanity" -5, "trap expert: 30}
+    output:  {"lucky":5, "insanity" -5, "trap expert: 30,"solar dragon": }
 end
 
 prompt
-    : from the given input please process and form an event, take into account the location description provided: transform a bow into an ice head bow
+    : from the given input please process and form an event, take into account the location description provided: forage for the tastiest berries in the land
 location:starting position, weird structure in the centre with many weapons
 end

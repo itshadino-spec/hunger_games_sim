@@ -6,7 +6,7 @@
         "connections": ["tundra", "desert", "poisoncreek"],
         "curr_weather": "none",
         "weather_type": ["none"],
-        "trap": ["none"]
+        "trap": []
     },
     {
         "name": "tundra",
@@ -22,7 +22,7 @@
         "description": "starting position ,nearly no food ",
         "status_effect": "thirst",
         "connections": ["cornocopia", "tundra" ],
-        "curr_weather": "none",
+        "curr_weather": "heavy rains",
         "weather_type": ["drought", "heavy rains", "extreme heat", "pleasant night", "mirage"],
         "trap": []
 

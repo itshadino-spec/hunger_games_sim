@@ -39,6 +39,10 @@ def odds(person, modifiers,day,name):
         roll += 10
     if ("hunt" in name or "forage" in name) and ("lushlife" in person.status):
         roll += 10
+
+    if roll >= 0:
+        roll = 1
+    print(roll)
     return roll
 
 def weapontransform(person, outcomes, add, happening):
@@ -66,7 +70,11 @@ def weapontransform(person, outcomes, add, happening):
         
 
 def happenstance(person,happening,day):
-    status_effects = ["enraged", "bloodloss", "insanity", "healthy", "satiated", "hunger"  "poisoned" ]
+    status_effects = ["bloodloss", "poison", "healthy", "enraged", "hunger",
+                       "stinky", "frozen" ," thirst" , "very healthy", "well rested", "satiated",
+                        "magic power", "scratch", "fatal wound", "bruises", "lethal damage taken",
+                          "cant move", "moreinsanity", "insanity", "snow", "extreme thirst", "sanity", 
+                        "hydrated", "heat", "mirage", "mist", "cant see", "lushlife"]
     rolled = odds(person, happening.traits,day,happening.event)
     oddtable = list(happening.outcomes.keys())
  
@@ -119,7 +127,7 @@ def passives(person):
 
 def evasion(person,attacker, day):
     evasion_odds = 25
-    evasion_table = {"solar dragon": 15, "lucky": 15, "can hide": 10, "turns into a rat": 20, "stealthy": 15, "knows where everyone is": 50, 
+    evasion_table = {"solar dragon": 15, "lucky": 15, "can hide": 10, "turns into a rat": 20, "stealthy": 15, "knows where everyone is": 20, 
                      "tuneller": 20 , "super hearing": 10 , "supher hearing": 20 }
     evasion_fail = ["can track people", "knows where everyone is"]
     if any(i in evasion_fail for i in attacker.traits):
@@ -160,7 +168,7 @@ def flight(attacker, defender, day):
     if roll > flight_odds:
         fight(attacker, defender, day)
         flavour = [defender, "failed to flee from", attacker]
-        if (len(attacker.alliance) > 0) or len(defender.alliance > 0):
+        if (len(attacker.alliance) > 0) or (len(defender.alliance) > 0):
             return alliance_combat
     else:
             flavour = [defender, "fled from", attacker]
@@ -174,6 +182,7 @@ def weapon_damage (person, output):
     maxdamage = 0
     damage = 0
     weapon = ""
+    print(person.inventory)
     for i in person.inventory:
         if i in weapon_dict:
             weapon_obj = weapon_dict.get(i)
@@ -187,9 +196,11 @@ def weapon_damage (person, output):
                     damage += fryingpan.get(j)
                 elif weapon_obj.type == "vommit" and j in list(vommit):
                     damage += vommit.get(j)
-        if damage > maxdamage:
-            maxdamage = damage
-            weapon = weapon_obj
+            if damage >= maxdamage:
+                maxdamage = damage
+                weapon = weapon_obj
+        else:
+            print("cheese burger")
     if output == "name":
         return weapon
     else:
@@ -219,8 +230,12 @@ def fight(attacker , defender, day_night):
     if (("projectile protection" in defender.traits) or ("cant see"in defender.status)) and (attacker_weapon.type == "longrange"):
         attacker_odds -= 10
 
-    def combat_outcome():
-        combatdict = {0:"scratch" ,20: "bloodloss", 60: "fatal wound", 1000: "lethal damage taken" }
+    def combat_outcome(attacker_odds, defender_odds):
+        attacker_odds += random.randint(0,50)
+        defender_odds += random.randint(0,50)
+        print(f"attacker odds:{attacker_odds}")
+        print(f"defender odds{defender_odds}")
+        combatdict = {0:"scratch" ,30: "bruises", 50: "bloodloss", 60: "fatal wound", 1000: "lethal damage taken" }
         for i in combatdict:
             num = int(i)
             if defender_odds < num:
@@ -228,7 +243,7 @@ def fight(attacker , defender, day_night):
                 attacker.status[attackerstatus] = day_night
                 break
         if (attackerstatus == "lethal damage taken") and ("canibal" in defender.traits):
-                attacker.hp += 20
+                defender.hp += 20
 
 
         for i in combatdict:
@@ -246,20 +261,20 @@ def fight(attacker , defender, day_night):
         return flavour
     
     def weapon_break(person, weapon):
-        if (random.randint(0,5) == 5) and not any(i in person.traits for i in ["cant break weapon", "ropemaker"]) and (weapon != "hands"):
-            person.inventory.remove(weapon)
+        if (random.randint(0,5) == 5) and not any(i in person.traits for i in ["cant break weapons", "ropemaker"]) and (weapon != "hands"):
+            person.inventory.remove(weapon.name)
             flavour = [person, "broke their weapon" , weapon]
         else:
-            print("gjkfasklg")
-        return llm(person, weapon)
+            flavour = [person, weapon, "weapon withstood combat"]
+        return llm(person, flavour)
     
-    flavour = combat_outcome() 
+    flavour = combat_outcome(attacker_odds, defender_odds) 
     weapon_break(attacker,attacker_weapon)
     weapon_break(defender, defender_weapon)
     llm(attacker, flavour)
     
 def combat(person, day_night):
-    if "anticombat" in person.status:
+    if (person.location == "desert") and (location_instances[2].curr_weather == "heavy rains"):
         flavour = [person, "could not engage in combat", "due to the heavy rains"]
         return llm(person, flavour)
     roll = 0
@@ -267,6 +282,9 @@ def combat(person, day_night):
     for i in tributes_instances:
         if i.name == defender:
             defender_object = i
+            if defender_object.alive == False:
+                flavour = [person ,"tried to attack the corpse of" ,defender_object ,"but was prevented by act of god"]
+                return llm(person,flavour)
             if person.location != defender_object.location:
                 flavour = [defender_object, "was in a different biome to" , person]
                 return llm(person,flavour)
@@ -293,7 +311,8 @@ def alliance_combat(attacker, defender):
 
 def status_condition(person,day): 
     hpstatus = {"frozen": -5,"thirst": -5, "very healthy": 20 ,"healthy": 10, "well rested": 5, "satiated": 15 , 
-                "bloodloss": -10, "poison": -5, "magic power": 5, "scratch": -5, "fatal wound": -20}
+                "bloodloss": -10, "poison": -5, "magic power": 5, "scratch": -5, "fatal wound": -20,
+                "bruises": -10}
     immunetraits = {"poison resistance": "poison", "camel": "thirst", "can smell water": "thirst", 
                     "can filter water": "thirst", "nocturnal": "insanity", "camelcamel": "extreme thirst"}
     
@@ -315,7 +334,8 @@ def status_condition(person,day):
                 person.hp += hpstatus.get(i)
         if (i == "insanity") and ("sanity" in person.status):
             person.status.pop("insanity")
-        elif (i == "hydrated") and ("thirsty" in person.status):
+        elif (i == "hydrated") and ("thirst" in person.status):
+            print(i)
             person.status.pop("thirst")
         elif(i == "heat") and ("camel" not in person.traits):
             if random.randint(0,100) == 100:
@@ -338,6 +358,12 @@ def status_condition(person,day):
         elif(i in poisoncreek_effects) and (person.location != "poisoncreek"):
             person.status.pop(i)
         
+        if len(person.status) > len(inflicted_statuses):
+            flavour = [person, "lost the status effect", i]
+            llm(person,flavour)
+        else:
+            print(person.status)
+        
             
 def night(person,night):
     sleepge = input(f"{person}sleep y/n:")
@@ -355,20 +381,25 @@ def inventory(person,day_night):
     traps = ["bear trap","explosive","poison dart trap", "spike pit", ]
     print(person.inventory)
     pick = input("select an item:")
-    if pick in person.inventory:
+    if (pick in person.inventory) and (pick in items) :
         add = items.get(pick)
         person.status[add] = day_night
-    else:
-        print("invalid")
-        inventory(person)
-
-    if pick in traps:
+        
+    elif pick in traps:
         for i in location_instances:
             if person.location == i.name:
                 i.trap.append(pick)
-
-def alliances(person):
-    pass
+    
+    elif pick == "full restore":
+        if "lethal damage taken" in person.status:
+            person.status.pop("lethal damage taken")
+        else:
+            person.hp = 100
+            
+    else:
+        print("invalid")
+        return inventory(person, day_night)
+    person.inventory.remove(pick)
 
 def genitem(person):
     items = {"witch doctor": "witch potion" , "artecorp potions": "artecorp potions",
@@ -390,15 +421,17 @@ def move(person, day_night, weatherdict):
     tomove = input((f"{curr.connections} {person.name} where do you want to go?:"))
     if tomove not in locs:
         print("error try again")
-        move(person,day_night,weatherdict)
+        return move(person,day_night,weatherdict)
     if (tomove == "tundra") and (weatherdict.get("tundra") == "extreme snow"):
         flavour = [person, "could not enter into the tundra due to the snow"]
         return llm(person, flavour)
     if "mirage" in person.status:
         tomove = random.choice(locs)
+    
+    
     person.location = tomove
     newloc = [i for i in location_instances if tomove == i.name ][0]
-    if newloc.status_effect != "none":
+    if (newloc.status_effect != "none"):
         person.status[newloc.status_effect] = day_night
         flavour = [person, "moved to", newloc, "and recieved the", newloc.status_effect]
     else:
@@ -414,6 +447,7 @@ def move(person, day_night, weatherdict):
         flavour=[person, "fell into" ,key, "and recieved" , trapdict.get(key)]
         newloc.trap.remove(key)
         llm(person,flavour)
+    weather(day_night)
 
 def curr_weather():
     local_weather = {"tundra": "none", "poisoncreek": "none", "desert": "none"}
@@ -422,6 +456,7 @@ def curr_weather():
     return local_weather
 
 def weather(day):
+    print("run")
     for i in location_instances:
         if random.randint(1,5) == 5:
             i.curr_weather = random.choice(i.weather_type)
@@ -444,7 +479,7 @@ def weather(day):
             if curr != "none":
                 i.status[tundra.get(curr)] = day
                 flavour = [i, "recieved the", curr, "status effect as he was in", i.location]
-            if curr == "avalance":
+            if curr == "avalanche":
                 print("the avalanche is approaching you must move away from he tundra")
                 move(i,day,weather_dict)
         elif i.location == "desert":
@@ -452,8 +487,9 @@ def weather(day):
             if curr != "none":
                 if (((curr == "drought") or (curr == "extreme head")) and ("camel" in i.traits)):
                     continue 
-                i.status[desert.get(curr)] = day
-                flavour = [i, "recieved the", curr, "status effect as he was in", i.location]
+                else:
+                    i.status[desert.get(curr)] = day
+                    flavour = [i, "recieved the", desert.get(curr), "status effect as he was in", i.location]
         elif i.location == "poisoncreek":
             curr = weather_dict.get("poisoncreek")
             if curr != "none":
@@ -538,12 +574,6 @@ def alliances(person,day):
     
 def turn(person, day_night, weatherdict):
     while True:
-        movechoice = input(f"{person} do you want to move")
-        if (("fast" in person.traits) or "agile" in person.traits) and movechoice == "yes":
-            move(person, day_night, weatherdict)
-            move(person, day_night, weatherdict)
-        elif movechoice == "yes":
-            move(person, day_night, weatherdict)
         if "cant move" in person.status:
             print(f"{person} is unable to move")
             break
@@ -562,7 +592,9 @@ def turn(person, day_night, weatherdict):
             alliances(person,day_night)
         else:
             print("invalid try again")
-            turn(person,day_night, weather)
+            return turn(person,day_night, weather)
+        
+        status_condition(person,day_night)
         person.hp -= 10
         if person.hp <= 0:
                 person.alive = False
@@ -579,9 +611,6 @@ def main():
         if day_night % 2 == 1:
             print("DAY HAS BEGUN")
         print(day_night)
-        for i in tributes_instances:
-            if len(i.status) > 0:
-                status_condition(i,day_night)
         player_turns = randomplayer(tributes_instances)
         while len(player_turns) > 0:
             person = random.choice(player_turns)
@@ -591,7 +620,14 @@ def main():
                     player_turns.remove(person)
                     continue
             if person.alive:
-                turn(person,day_night,weather_dict)
+                movechoice = input(f"{person} do you want to move")
+            if (("fast" in person.traits) or "agile" in person.traits) and movechoice == "yes":
+                move(person, day_night, weather_dict)
+                move(person, day_night, weather_dict)
+            elif movechoice == "yes":
+                move(person, day_night, weather_dict)
+            
+            turn(person,day_night,weather_dict)
             player_turns.remove(person)
             
     winners = [p for p in tributes_instances if p.alive]

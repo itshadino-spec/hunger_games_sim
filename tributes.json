@@ -9,7 +9,7 @@
         "status": {},
         "hp": 100,
         "alive": true,
-        "inventory": ["potion","bow", "bear trap"],
+        "inventory": ["potion","hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -24,7 +24,7 @@
         "status": {},
         "hp": 100,
         "alive": true,
-        "inventory": ["potion","bow", "bear trap"],
+        "inventory": ["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
         
@@ -39,7 +39,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -53,7 +53,7 @@
     "status": {},
     "hp": 110,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -67,7 +67,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -81,7 +81,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -95,7 +95,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -109,7 +109,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -123,7 +123,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -137,7 +137,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -151,7 +151,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -165,7 +165,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -179,7 +179,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -191,7 +191,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -205,7 +205,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -219,7 +219,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -233,7 +233,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -245,7 +245,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -259,7 +259,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -273,7 +273,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -287,7 +287,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     },
@@ -301,7 +301,7 @@
     "status": {},
     "hp": 100,
     "alive": true,
-    "inventory":["potion", "bow", "bear trap"],
+    "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
         "alliance": []
     }

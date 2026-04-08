@@ -1,11 +1,14 @@
 {
-    "event": "transform: bow to ice head bow",
+    "event": "scavenge the cornucopia structure for berries",
     "outcomes": {
-        "0": "bow",
-        "100": "ice head bow"
+        "0": "hunger",
+        "50": "poison",
+        "100": "healthy"
     },
     "traits": {
         "lucky": 5,
-        "insanity": -10
+        "insanity": -10,
+        "chef": 20,
+        "botanist": 30
     }
 }

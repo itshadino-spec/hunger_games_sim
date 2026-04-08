@@ -18,16 +18,17 @@ end
 outcomes
     : must be formatted as a dictionary
           key must be a string representation of a non negative integer
-          first key must be "0" and final must be "100"
+          first key must be "0" and  and final must be "100"
           value must be from the valid items list OR valid statuses list OR valid weapons 
           OR valid weapon transformations OR valid traps
           OUTCOMES CANNOT BE FROM MORE THAN ONE LISTS
           outcomes must reflect the location context
-valid items = {"artecorp potions": "very healthy", "potion": "healthy", "candy": "satiated", 
-"carrots": "enraged", "fish": "satiated", "witch potion": "magic power"}
+valid items = artecorp potions, potion, candy ,carrots, fish, witch potions, full restore
 valid traps = ["bear trap","explosive","poison dart trap", "spike pit"]
-valid statuses = [bloodloss, poison, healthy, enraged, hunger, stinky]
-valid weapons: [hands, bow  crossbow throwingknives, fryingpan,
+valid statuses = [bloodloss, poison, healthy, enraged, hunger, stinky, frozen,thirst,very healthy, well rested, satiated,
+magic power, scratch, fatal wound, bruises, lethal damage taken, cant move, moreinsanity, insanity, snow, extreme thirst, sanity, 
+hydrated, heat, mirage, mist, cant see, lushlife]
+valid weapons: [stick, bow,  crossbow, throwingknives, fryingpan,
  flint dagger, spears, ground stone axe, mace, dagger, javelin, axe, sickle, club, longsword,]
  valid weapon transformations: [ice head bow, poison tipped bow, mythical longsword, ice head crossbow, poison tipped crossbow]
 eg: input: "find a wild beast to eat" location: "tundra: massive trees, very cold and very strong beasts"
@@ -35,7 +36,7 @@ eg: input: "find a wild beast to eat" location: "tundra: massive trees, very col
     input: "forage for food" location: "poisoncreek: lush with wild life, flora and fauna yet much is poisonous"
     output: {"0": "poison", "40": "hunger", "100": "healthy"}
     input: "look for a weapon" location: "cornocopia: starting position, weird structure in the centre with many weapons"
-    output: {"10": "bow", "100": "crossbow"}
+    output: {"0": "stick", "20": "mace", "30": "javelin", "40", "50", "bow", "70":  "90": "crossbow","100": "longsword"}
     input: "find food" location: "desert: starting position, nearly no food"
     output: {"0": "hunger", "20": "bloodloss", "100": "healthy"}
     input: "tranform bow to ice head bow location:tundra massive trees, very cold and very strong beasts"
@@ -54,7 +55,7 @@ traits
 valid traits:
             doctor: +10 hp per day
 martial arts: +10 fight roll
-turns into a camel: +5 all rolls (generic)
+turns into a camel: can turn into a camel, immune from some conditions
 stealth: +10 evasion
 super hearing: +10 evasion
 hand eye coordination: +10 fight roll
@@ -69,25 +70,25 @@ smell water: immune to thirst
 chef: +20 foraging events
 faster healing: +10 hp per day
 knows where everyone is: +10 evasion (generic)
-artecorp potions: potion every 5 days
+artecorp potions: potion every 3 days
 nocturnal: immune to insanity
 longrange weapons: +10 damage with ranged weapons
-makes ropes: +10 evasion (generic)
+makes ropes: cant break weapons
 feather falling: +20 flee odds
 good aim: +10 damage with ranged weapons
 candy: consumable item every 3 days
-cant break weapons: weapons never removed from inventory
+cant break weapons: weapons cant break
 can revive birds: cosmetic only
 hunter: +20 hunting events, +10 combat
 waterfilter: immune to thirst
-can make stone weapons: +10 combat (generic)
+can make stone weapons: generates stone weapons
 botanist: +30 foraging events
-agile: +10 flee
+agile: +10 flee can move twice
 stealthy: +10 evasion
-can throw knives: +10 combat
+can throw knives: +10 for throwing knives
 angry: +10 combat
-turn into a rat: +10 evasion (generic)
-lucky: +5 all rolls
+turn into a rat: +10 evasion, +10 combat, +10 flight
+lucky: +15 all rolls
 solar dragon: random number from 0 to 30
 pet whale: food item every 3 days
 popeyes but carrot edition: carrot item every 3 days
@@ -107,7 +108,7 @@ poison resistance (chance): immune to poisoned status
 strategist: free to interpret, add boost for events that need strategic acument
 cannibal: +20 hp upon killing a player
 great chef: +40 on all foraging related activities
-        ALL EVENTS MUST HAVE LUCKY WITH +5
+        ALL EVENTS MUST HAVE LUCKY WITH +15
         ALL EVENTS MUST HAVE INSANITY WITH -10
 eg: input: "find a wild beast to eat" location: "tundra: massive trees, very cold and very strong beasts"
     output: {"lucky": 5, "insanity": -10, "hunter": 20, "martial arts": 10, "solar dragon":5 }

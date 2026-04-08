@@ -130,5 +130,11 @@
         "type": "vommit",
         "status": ["acid burns"],
         "lethality": 0
+    },
+    {
+        "name": "stick",
+        "type": "shortrange",
+        "status": [],
+        "lethality": 5
     }
 ]
