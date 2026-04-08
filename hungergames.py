@@ -231,8 +231,8 @@ def fight(attacker , defender, day_night):
         attacker_odds -= 10
 
     def combat_outcome(attacker_odds, defender_odds):
-        attacker_odds += random.randint(0,50)
-        defender_odds += random.randint(0,50)
+        attacker_odds += random.randint(0,30)
+        defender_odds += random.randint(0,30)
         print(f"attacker odds:{attacker_odds}")
         print(f"defender odds{defender_odds}")
         combatdict = {0:"scratch" ,30: "bruises", 50: "bloodloss", 60: "fatal wound", 1000: "lethal damage taken" }
