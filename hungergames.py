@@ -292,6 +292,7 @@ def combat(person, day_night):
             evasion_odds = evasion(i,person,day_night)
     if evasion_odds < roll:
         flavour = [defender_object, "was found by", person]
+        llm(person, flavour)
         defender_action = input(f"{defender_object}: fight or flight?: ")
         if defender_action == "flight":
             flight(person,defender_object, day_night)
@@ -299,7 +300,7 @@ def combat(person, day_night):
             fight(person,defender_object, day_night)
     else:
         flavour = [defender_object, "escaped from", person]
-    llm(person, flavour)
+        llm(person, flavour)
 
 def alliance_combat(attacker, defender):
     if (len(attacker.alliance) > 0) and (len(attacker.alliance) > 0):
@@ -623,7 +624,8 @@ def main():
                 movechoice = input(f"{person} do you want to move")
             if (("fast" in person.traits) or "agile" in person.traits) and movechoice == "yes":
                 move(person, day_night, weather_dict)
-                move(person, day_night, weather_dict)
+                if "cant move" not in person.status:
+                    move(person, day_night, weather_dict)
             elif movechoice == "yes":
                 move(person, day_night, weather_dict)
             

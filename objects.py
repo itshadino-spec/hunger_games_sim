@@ -49,3 +49,5 @@ tributes_instances = [Tribute(**i) for i in json.load(open('tributes.json'))]
 weapons_instances  = [Weapon(**i)  for i in json.load(open('weapons.json'))]
 location_instances = [Map(**i) for i in json.load(open('map.json'))]
 eventfunction = generate_event
+for i in tributes_instances:
+    print (i)
