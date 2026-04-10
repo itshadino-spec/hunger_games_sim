@@ -1,7 +1,7 @@
 import json
 import random
 
-from objects import location_instances, tributes_instances, weapons_instances, generate_event
+from objects import location_instances, tributes_instances, weapons_instances, generate_event,miscinstance
 from ai import  userprompt, flavourtext
 
 weapon_dict = {}
@@ -39,6 +39,8 @@ def odds(person, modifiers,day,name):
         roll += 10
     if ("hunt" in name or "forage" in name) and ("lushlife" in person.status):
         roll += 10
+    if "solardragon" in person.traits:
+        roll +=random.randint(-50,100)
 
     if roll >= 0:
         roll = 1
@@ -51,7 +53,7 @@ def weapontransform(person, outcomes, add, happening):
     if outcomes.get("100") in transformations:
         if person.location != transformations.get(outcomes.get("100")):
             flavour = [person, "incorrect location for the modfication", happening]
-            return llm(person,flavour)
+            return 
         
     transformandbase = ["poison tipped bow", "ice head bow","poison tipped crossbow", "ice head crossbow",
                          "mythical longsword"]
@@ -66,7 +68,7 @@ def weapontransform(person, outcomes, add, happening):
         else:
             flavour = [person, "destroyed their weapon", add, happening]
             person.inventory.remove(add)
-    return llm(person,flavour)
+    return 
         
 
 def happenstance(person,happening,day):
@@ -97,6 +99,11 @@ def save():
     tributes_data = [i.__dict__ for i in tributes_instances if i.alive == True] 
     with open('temp.json', 'w') as f:
         json.dump(tributes_data,f,indent = 4)
+    
+    misc_data = {"day": miscinstance.day, "order": miscinstance.order}
+
+    with open('misc.json', 'w') as f:
+        json.dump(misc_data, f,indent =4)
 
 def flag(person_instances):
     alive_tributes = 0
@@ -113,8 +120,8 @@ def flag(person_instances):
 def randomplayer(person_instances):
     temp_instances = []
     for i in range(len(person_instances)):
-        person = person_instances[i]
-        if person.alive:
+        person = person_instances[i].name
+        if person_instances[i].alive:
             temp_instances.append(person)
     return temp_instances
 
@@ -151,7 +158,9 @@ def flight(attacker, defender, day):
     flight_odds = 10
     flight_table = {"solar dragon": 15, "lucky": 15, "climb tree": 20, "can hide": 20, "turns into a rat": 10,
                      "agile": 20, "fast": 20, "feather falling": 20}
-    flight_status_table = {"mist": 10, "insanity": -10, "moreinsanity": -10, "magic power": 5}
+    flight_status_table = {"mist": 10, "insanity": -10,
+                            "moreinsanity": -10, "magic power": 5
+                            ,"turns half size": 20}
     for i in flight_status_table:
         if i in defender.status:
             flight_odds += flight_status_table.get(i)
@@ -256,7 +265,7 @@ def fight(attacker , defender, day_night):
             attacker.hp += 20
         if len(attacker_weapon.status) > 0:
             defender.status[attacker_weapon.status[0]] = day_night
-        flavour = [attacker, "fought" , defender, "atacker recieved" , attackerstatus, "the defender recieved", defenderstatus]
+        flavour = [attacker, "fought" , defender, "with", attacker_weapon, "and defender used", defender_weapon,"atacker recieved", attackerstatus, "the defender recieved", defenderstatus]
         
         return flavour
     
@@ -284,10 +293,13 @@ def combat(person, day_night):
             defender_object = i
             if defender_object.alive == False:
                 flavour = [person ,"tried to attack the corpse of" ,defender_object ,"but was prevented by act of god"]
-                return llm(person,flavour)
+                return 
             if person.location != defender_object.location:
                 flavour = [defender_object, "was in a different biome to" , person]
-                return llm(person,flavour)
+                return 
+            if any(i in defender.alliance for i in person.alliance):
+                flavour = "you cannot attack alliance members"
+                return combat
             roll = random.randint(0,100)
             evasion_odds = evasion(i,person,day_night)
     if evasion_odds < roll:
@@ -342,7 +354,7 @@ def status_condition(person,day):
             if random.randint(0,100) == 100:
                 person.alive = False
                 flavour = [person, "died due to the extreme heat of the desert"]
-                llm(person,flavour)
+                
         elif i == "mirage" or i == "cant move":
             person.status.pop(i)
         elif i == "lethal damage taken":
@@ -361,24 +373,42 @@ def status_condition(person,day):
         
         if len(person.status) > len(inflicted_statuses):
             flavour = [person, "lost the status effect", i]
-            llm(person,flavour)
+            print(flavour)
         else:
             print(person.status)
         
             
 def night(person,night):
     sleepge = input(f"{person}sleep y/n:")
+    if person.sleepdeprivation >= 100:
+        flavour = [person, "collapsed from sleep exhaustion"]
+        person.sleepdeprivation == 0
     if sleepge == "n":
+        if "nocturnal" in person.traits:
+            person.sleepdeprivation += 25
+        else:
+            person.sleepdeprivation += 40
         person.status["insanity"] = night
-        print(f"{person} did not rest")
-    else:
+        flavour = [person, "stayed up for the night"]
+        
+    elif sleepge == "y":
         person.status["well rested"] = night
-        print(f"{person} slept")
-        return True
+        flavour = (person , "peacefully fell alseep")
+        person.sleepdeprivation = 0
+        person.awake = False
+    else:
+        print("error try again")
+        return night
+    llm(person,flavour)
+
+def night_helper_function(person,daynight):
+    xyz = random.sample(tributes_instances, len(tributes_instances))
+    for i in xyz:
+        night(i, daynight)
 
 def inventory(person,day_night):
     items = {"artecorp potions": "very healthy" , "potion": "healthy", "candy": "satiated" , "carrots": "enraged", "fish": "satiated",
-              "witch potion": "magic power"}
+              "witch potion": "magic power", "tea": "sanity", "bread": "satiated"}
     traps = ["bear trap","explosive","poison dart trap", "spike pit", ]
     print(person.inventory)
     pick = input("select an item:")
@@ -386,17 +416,19 @@ def inventory(person,day_night):
         add = items.get(pick)
         person.status[add] = day_night
         
-    elif pick in traps:
+    elif (pick in traps) and (pick in person.inventory):
         for i in location_instances:
             if person.location == i.name:
                 i.trap.append(pick)
     
-    elif pick == "full restore":
+    elif (pick == "full restore") and (pick in person.inventory):
         if "lethal damage taken" in person.status:
             person.status.pop("lethal damage taken")
         else:
             person.hp = 100
-            
+    
+    elif (pick == "tea") and (pick in person.inventory):
+        person.sleepdeprivation -= 40
     else:
         print("invalid")
         return inventory(person, day_night)
@@ -404,7 +436,8 @@ def inventory(person,day_night):
 
 def genitem(person):
     items = {"witch doctor": "witch potion" , "artecorp potions": "artecorp potions",
-             "pet whale": "fish", "pet cat": "fish", "super strength carrots": "carrots" }
+             "bread maker": "bread", "pet cat": "fish", "super strength carrots": "carrots"
+              ,"tea maker": "tea" }
     for i in person.traits:
         if i in items:
             person.inventory.append(items.get(i))
@@ -428,9 +461,14 @@ def move(person, day_night, weatherdict):
         return llm(person, flavour)
     if "mirage" in person.status:
         tomove = random.choice(locs)
-    
-    
+    if person.location == tomove:
+        return
     person.location = tomove
+    if len(person.alliance) > 0:
+        for i in person.alliance:
+            for j in tributes_instances:
+                if i in j.alliance:
+                    j.location = person.location
     newloc = [i for i in location_instances if tomove == i.name ][0]
     if (newloc.status_effect != "none"):
         person.status[newloc.status_effect] = day_night
@@ -447,8 +485,22 @@ def move(person, day_night, weatherdict):
         person.hp -= 10
         flavour=[person, "fell into" ,key, "and recieved" , trapdict.get(key)]
         newloc.trap.remove(key)
-        llm(person,flavour)
+        
     weather(day_night)
+
+
+def move_helper_func(day_night,weather_dict):
+    xyz = random.sample(tributes_instances, len(tributes_instances))
+    for person in xyz:
+        if person.alive:
+            movechoice = input(f"{person} do you want to move")
+            if (("fast" in person.traits) or "agile" in person.traits) and movechoice == "yes":
+                move(person, day_night, weather_dict)
+                if "cant move" not in person.status:
+                    move(person, day_night, weather_dict)
+            elif movechoice == "yes":
+                move(person, day_night, weather_dict)
+
 
 def curr_weather():
     local_weather = {"tundra": "none", "poisoncreek": "none", "desert": "none"}
@@ -505,18 +557,11 @@ def alliances(person,day):
 
     def formalliance():
         strangers = [i for i in tributes_instances if i.location == person.location]
-        while True:
-            ally = input(f"{strangers} who do you wish to form an alliance with?")
-            for i in tributes_instances:
-                target = next((t for t in tributes_instances if t.name == ally), None)
-            if target and target.name != person.name:
-                if target not in person.alliance:
-                    person.alliance.append(target)
-                    target.alliance.append(person)
-                    print(f"Alliance formed with {target.name}")
-                return 
-            else:
-                print("invalid")
+        ally = input(f"{strangers} who do you wish to form an alliance with?")
+        for i in strangers:
+            if (i.name == ally) and (i != person):
+                i.alliance.append(name)
+        alliances(person,day)
     
     def trade(person):
         a = input(f"{tributes_instances}\n {person} choose a player to trade with")
@@ -534,17 +579,20 @@ def alliances(person,day):
             person.inventory.append(take)
             person.inventory.remove(give)
             flavour = [person, "gave", give, "and recieved from", trader, take]
-            llm(person,flavour)
+            
     
     def backstab(person):
-        if day % 2 == 1:
-            print("backstabbing can only occur when night falls")
-            return
-        backstabbed = input(f"{person.alliance} select player to backstab")
+        backstabbed = input(f"select player to backstab")
+        backstabb = "temp"
         for i in tributes_instances:
-            if i.name == backstabbed:
+            if (i.name == backstabbed) and (i.name in person.alliance):
                 backstabb = i
-            else: return
+        if backstabb == "temp":
+            backstab(person)
+
+        if backstabb.awake == True:
+            print("backstabbing can only occur against a sleeping player")
+            return
         
         if "charismatic" in backstabb.traits:
             flavour = [backstabb, "staved off an attack from an ally"]
@@ -553,27 +601,33 @@ def alliances(person,day):
         
         if random.randint(0,5) == 5:
             person.alive = False
-            flavour = [person ,"tried to backstab", backstabb, "and was killed"]
+            flavour = [person ,"was killed by an unknown ally under mysterious circumstances"]
         else:
             backstabb.alive = False
-            flavour = [backstabb ,"was killed by an ally"]
+            flavour = [backstabb ,"was killed by an unknown ally under mysterious circumstances"]
         llm(backstabb,flavour)
 
-    choice = input(f"{person} do you want to add allies")
-    if choice == "yes":
+    
+    form = input("join alliance or leave alliance y/n?")
+    if form == "yes":
+        name = input("enter alliance name")
+        if name not in person.alliance:
+            person.alliance.append(name)
         formalliance()
     else:
-        flavour = [person, "has formed an alliance", person.alliance]
-    
+        name = input("enter alliance you want to leave")
+        if name in person.alliance:
+            person.allliance.remove(name)
 
     allianceaction = input("what action do you want to do with your alliance")
     if allianceaction == "trade":
         trade(person)
+        turn(person,day)
     elif allianceaction == "backstab":
         backstab(person)
-    llm(person,flavour)
+    #
     
-def turn(person, day_night, weatherdict):
+def turn(person, day_night):
     while True:
         if "cant move" in person.status:
             print(f"{person} is unable to move")
@@ -593,9 +647,10 @@ def turn(person, day_night, weatherdict):
             alliances(person,day_night)
         else:
             print("invalid try again")
-            return turn(person,day_night, weather)
+            return turn(person,day_night, )
         
         status_condition(person,day_night)
+        save()
         person.hp -= 10
         if person.hp <= 0:
                 person.alive = False
@@ -604,33 +659,34 @@ def turn(person, day_night, weatherdict):
         break
 
 def main():
-    day_night = 0
     while flag(tributes_instances):
-        day_night += 1
+        miscinstance.day += 1
         save()
-        weather_dict = weather(day_night)
-        if day_night % 2 == 1:
+        miscinstance.order = randomplayer(tributes_instances)
+        weather_dict = weather(miscinstance.day)
+        if miscinstance.day % 2 == 0:
+            night_helper_function(person,miscinstance.day)
+        move_helper_func(miscinstance.day,weather_dict)
+        if miscinstance.day % 2 == 1:
             print("DAY HAS BEGUN")
-        print(day_night)
-        player_turns = randomplayer(tributes_instances)
-        while len(player_turns) > 0:
-            person = random.choice(player_turns)
-            if day_night % 2 == 0:
-                sleep = night(person,day_night)
-                if sleep:
-                    player_turns.remove(person)
+            for i in tributes_instances:
+                i.awake == True
+        print(miscinstance.day)
+        miscinstance.order = randomplayer(tributes_instances)
+
+        while len(miscinstance.order) > 0:
+            curr = random.choice(miscinstance.order)
+            person = next((i for i in tributes_instances if i.name == curr),None)
+
+            if person:
+                if person.awake == False:
+                    miscinstance.order.remove(curr)
                     continue
-            if person.alive:
-                movechoice = input(f"{person} do you want to move")
-            if (("fast" in person.traits) or "agile" in person.traits) and movechoice == "yes":
-                move(person, day_night, weather_dict)
-                if "cant move" not in person.status:
-                    move(person, day_night, weather_dict)
-            elif movechoice == "yes":
-                move(person, day_night, weather_dict)
+                if person.alive:
+                    turn(person,miscinstance.day)
             
-            turn(person,day_night,weather_dict)
-            player_turns.remove(person)
+            miscinstance.order.remove(curr)
+            save()
             
     winners = [p for p in tributes_instances if p.alive]
     save()

@@ -22,6 +22,8 @@ class Tribute:
     inventory: list
     location: str
     alliance: list
+    awake: bool
+    sleepdeprivation: int
     def __repr__(self): return f"{self.name}"
 
 @dataclass
@@ -39,6 +41,10 @@ class Event:
     traits: dict
     def __repr__(self): return f"{self.event}"
 
+class Misc:
+    def __init__(self, day, order):
+        self.day = day
+        self.order = order
     
 def generate_event():
     i = json.load(open('events.json'))
@@ -49,5 +55,8 @@ tributes_instances = [Tribute(**i) for i in json.load(open('tributes.json'))]
 weapons_instances  = [Weapon(**i)  for i in json.load(open('weapons.json'))]
 location_instances = [Map(**i) for i in json.load(open('map.json'))]
 eventfunction = generate_event
-for i in tributes_instances:
-    print (i)
+
+with open('misc.json') as f:
+    data = json.load(f)
+    miscinstance = Misc(**data)
+

@@ -2,16 +2,18 @@
     {
         "name": "apo",
         "traits": [
-            "great chef",
+            "bread maker",
             "super strength carrot",
-            "pet whale"
+            "elephant caravan"
         ],
         "status": {},
         "hp": 100,
         "alive": true,
         "inventory": ["potion","hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "justacamel",
@@ -26,7 +28,9 @@
         "alive": true,
         "inventory": ["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
         
     },
     {
@@ -41,7 +45,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "winter",
@@ -55,7 +61,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "milky",
@@ -69,7 +77,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "phorahg",
@@ -83,7 +93,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "artenyan",
@@ -97,7 +109,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "bird",
@@ -111,12 +125,14 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "funkier fella",
         "traits": [
-        "stealth",
+        "stealthy",
         "super hearing",
         "hand eye coordination"
     ],
@@ -125,7 +141,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "augustus",
@@ -139,7 +157,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "geneva checklist",
@@ -153,7 +173,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "bubble nugget",
@@ -167,7 +189,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "froglonso",
@@ -181,7 +205,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "misan",
@@ -193,7 +219,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "A",
@@ -207,7 +235,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "lys",
@@ -221,13 +251,15 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "zal",
         "traits": [
         "pet cat",
-        "herbalist",
+        "tea maker",
         "trap specialist"
     ],
     "status": {},
@@ -235,7 +267,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "naruto the solar dragon",
@@ -247,7 +281,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "curious",
@@ -261,7 +297,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "justinafrog",
@@ -275,7 +313,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "chance",
@@ -289,7 +329,9 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     },
     {
         "name": "mothman",
@@ -303,6 +345,72 @@
     "alive": true,
     "inventory":["potion", "hands", "bear trap"],
         "location": "cornocopia",
-        "alliance": []
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "jboll",
+        "traits": [
+        "chef",
+        "hunter",
+        "builds shelter"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "hands", "bear trap"],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "pepsi",
+        "traits": [
+        "fast",
+        "nocturnal",
+        "charismatic"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "hands", "bear trap"],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "amelia",
+        "traits": [
+        "climb trees",
+        "long range weapon",
+        "stealthy"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "hands", "bear trap"],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "bobo",
+        "traits": [
+        "poison resistance",
+        "turns half size",
+        "cant break weapons"
+    ],
+    "status": {},
+    "hp": 100,
+    "alive": true,
+    "inventory":["potion", "hands", "bear trap"],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
     }
 ]
