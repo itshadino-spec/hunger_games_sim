@@ -1,14 +1,18 @@
 {
-    "event": "scavenge the cornucopia structure for berries",
+    "event": "scavenge the cornucopia structure for weapons",
     "outcomes": {
-        "0": "hunger",
-        "50": "poison",
-        "100": "healthy"
+        "0": "stick",
+        "20": "mace",
+        "30": "javelin",
+        "50": "bow",
+        "70": "axe",
+        "90": "crossbow",
+        "100": "longsword"
     },
     "traits": {
         "lucky": 5,
         "insanity": -10,
-        "chef": 20,
-        "botanist": 30
+        "strategist": 10,
+        "martial arts": -10
     }
 }

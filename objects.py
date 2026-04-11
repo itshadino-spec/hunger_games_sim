@@ -42,9 +42,11 @@ class Event:
     def __repr__(self): return f"{self.event}"
 
 class Misc:
-    def __init__(self, day, order):
+    def __init__(self, day, order,moveflag, sleepflag):
         self.day = day
         self.order = order
+        self.moveflag = moveflag
+        self.sleepflag = sleepflag
     
 def generate_event():
     i = json.load(open('events.json'))
@@ -59,4 +61,5 @@ eventfunction = generate_event
 with open('misc.json') as f:
     data = json.load(f)
     miscinstance = Misc(**data)
+
 

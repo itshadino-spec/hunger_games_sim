@@ -36,7 +36,7 @@ eg: input: "find a wild beast to eat" location: "tundra: massive trees, very col
     input: "forage for food" location: "poisoncreek: lush with wild life, flora and fauna yet much is poisonous"
     output: {"0": "poison", "40": "hunger", "100": "healthy"}
     input: "look for a weapon" location: "cornocopia: starting position, weird structure in the centre with many weapons"
-    output: {"0": "stick", "20": "mace", "30": "javelin", "40", "50", "bow", "70":  "90": "crossbow","100": "longsword"}
+    output: {"0": "stick", "20": "mace", "30": "javelin", "40": "axe, "60":"bow", "70":crossbow,"100": "longsword"}
     input: "find food" location: "desert: starting position, nearly no food"
     output: {"0": "hunger", "20": "bloodloss", "100": "healthy"}
     input: "tranform bow to ice head bow location:tundra massive trees, very cold and very strong beasts"

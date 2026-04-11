@@ -14,7 +14,7 @@ def llm(person,happening):
         text = userprompt(person,context)
         a = genevent(text,person)
         return a
-    #flavourtext(happening)
+    flavourtext(happening)
     print(happening)
 
 def genevent(event_object,person):
@@ -42,7 +42,7 @@ def odds(person, modifiers,day,name):
     if "solardragon" in person.traits:
         roll +=random.randint(-50,100)
 
-    if roll >= 0:
+    if roll <= 0:
         roll = 1
     print(roll)
     return roll
@@ -393,6 +393,7 @@ def night(person,night):
         
     elif sleepge == "y":
         person.status["well rested"] = night
+        person.status["sanity"] = night
         flavour = (person , "peacefully fell alseep")
         person.sleepdeprivation = 0
         person.awake = False
@@ -401,10 +402,12 @@ def night(person,night):
         return night
     llm(person,flavour)
 
-def night_helper_function(person,daynight):
+def night_helper_function(daynight):
     xyz = random.sample(tributes_instances, len(tributes_instances))
     for i in xyz:
         night(i, daynight)
+    miscinstance.sleepflag = False
+    save()
 
 def inventory(person,day_night):
     items = {"artecorp potions": "very healthy" , "potion": "healthy", "candy": "satiated" , "carrots": "enraged", "fish": "satiated",
@@ -500,6 +503,8 @@ def move_helper_func(day_night,weather_dict):
                     move(person, day_night, weather_dict)
             elif movechoice == "yes":
                 move(person, day_night, weather_dict)
+    miscinstance.moveflag = False
+    save()
 
 
 def curr_weather():
@@ -624,9 +629,7 @@ def alliances(person,day):
         trade(person)
         turn(person,day)
     elif allianceaction == "backstab":
-        backstab(person)
-    #
-    
+        backstab(person)    
 def turn(person, day_night):
     while True:
         if "cant move" in person.status:
@@ -659,19 +662,22 @@ def turn(person, day_night):
         break
 
 def main():
+    day = miscinstance.day
     while flag(tributes_instances):
-        miscinstance.day += 1
+        day += 1
         save()
         miscinstance.order = randomplayer(tributes_instances)
-        weather_dict = weather(miscinstance.day)
-        if miscinstance.day % 2 == 0:
-            night_helper_function(person,miscinstance.day)
-        move_helper_func(miscinstance.day,weather_dict)
-        if miscinstance.day % 2 == 1:
+        weather_dict = weather(day)
+        if (day % 2 == 0) and (miscinstance.sleepflag == True) :
+            night_helper_function(day)
+        move_helper_func(day,weather_dict)
+        if day % 2 == 1:
             print("DAY HAS BEGUN")
+            miscinstance.moveflag = True
+            miscinstance.sleepflag = True
             for i in tributes_instances:
                 i.awake == True
-        print(miscinstance.day)
+        print(day)
         miscinstance.order = randomplayer(tributes_instances)
 
         while len(miscinstance.order) > 0:
@@ -683,7 +689,7 @@ def main():
                     miscinstance.order.remove(curr)
                     continue
                 if person.alive:
-                    turn(person,miscinstance.day)
+                    turn(person,day)
             
             miscinstance.order.remove(curr)
             save()

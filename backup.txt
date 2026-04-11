@@ -25,7 +25,9 @@ outcomes
           outcomes must reflect the location context
 valid items = artecorp potions, potion, candy ,carrots, fish, witch potions, full restore
 valid traps = ["bear trap","explosive","poison dart trap", "spike pit"]
-valid statuses = [bloodloss, poison, healthy, enraged, hunger, stinky]
+valid statuses = [bloodloss, poison, healthy, enraged, hunger, stinky, frozen,thirst,very healthy, well rested, satiated,
+magic power, scratch, fatal wound, bruises, lethal damage taken, cant move, moreinsanity, insanity, snow, extreme thirst, sanity, 
+hydrated, heat, mirage, mist, cant see, lushlife]
 valid weapons: [stick, bow,  crossbow, throwingknives, fryingpan,
  flint dagger, spears, ground stone axe, mace, dagger, javelin, axe, sickle, club, longsword,]
  valid weapon transformations: [ice head bow, poison tipped bow, mythical longsword, ice head crossbow, poison tipped crossbow]
@@ -50,10 +52,11 @@ traits
         key must be a string which is a trait name
         trait names must come from the valid trait name list
         value must be an int representation of an integer
+        use around 5 to 10 traits
 valid traits:
             doctor: +10 hp per day
 martial arts: +10 fight roll
-turns into a camel: +5 all rolls (generic)
+turns into a camel: can turn into a camel, immune from some conditions
 stealth: +10 evasion
 super hearing: +10 evasion
 hand eye coordination: +10 fight roll
@@ -68,25 +71,25 @@ smell water: immune to thirst
 chef: +20 foraging events
 faster healing: +10 hp per day
 knows where everyone is: +10 evasion (generic)
-artecorp potions: potion every 5 days
+artecorp potions: potion every 3 days
 nocturnal: immune to insanity
 longrange weapons: +10 damage with ranged weapons
-makes ropes: +10 evasion (generic)
+makes ropes: cant break weapons
 feather falling: +20 flee odds
 good aim: +10 damage with ranged weapons
 candy: consumable item every 3 days
-cant break weapons: weapons never removed from inventory
+cant break weapons: weapons cant break
 can revive birds: cosmetic only
 hunter: +20 hunting events, +10 combat
 waterfilter: immune to thirst
-can make stone weapons: +10 combat (generic)
+can make stone weapons: generates stone weapons
 botanist: +30 foraging events
-agile: +10 flee
+agile: +10 flee can move twice
 stealthy: +10 evasion
-can throw knives: +10 combat
+can throw knives: +10 for throwing knives
 angry: +10 combat
-turn into a rat: +10 evasion (generic)
-lucky: +5 all rolls
+turn into a rat: +10 evasion, +10 combat, +10 flight
+lucky: +15 all rolls
 solar dragon: random number from 0 to 30
 pet whale: food item every 3 days
 popeyes but carrot edition: carrot item every 3 days
@@ -106,23 +109,23 @@ poison resistance (chance): immune to poisoned status
 strategist: free to interpret, add boost for events that need strategic acument
 cannibal: +20 hp upon killing a player
 great chef: +40 on all foraging related activities
-        ALL EVENTS MUST HAVE LUCKY WITH +5
+        ALL EVENTS MUST HAVE LUCKY WITH +15
         ALL EVENTS MUST HAVE INSANITY WITH -10
 eg: input: "find a wild beast to eat" location: "tundra: massive trees, very cold and very strong beasts"
-    output: {"lucky": 5, "insanity": -10, "hunter": 20, "martial arts": 10, "solar dragon":5 }
+    output: {"lucky": 5, "insanity": -10, "hunter": 20, "martial arts": 10,, climb trees: 10 }
     input: "forage for food" location: "poisoncreek: lush with wild life, flora and fauna yet much is poisonous"
-    output: {"lucky": 5, "insanity": -10, "botanist": 30, "chef": 20, "great chef": 40,"solar dragon":10 }
+    output: {"lucky": 5, "insanity": -10, "botanist": 30, "chef": 20, "great chef": 40 "lethal with a fryin pan": 10 }
     input: "look for a weapon" location: "cornocopia: starting position, weird structure in the centre with many weapons"
-    output: {"lucky": 5, "insanity": -10, "strategist": 10,"solar dragon": }
+    output: {"lucky": 5, "insanity": -10, "strategist": 10, "martial arts": -10}
     input: "find food" location: "desert: starting position, nearly no food"
-    output: {"lucky": 5, "insanity": -10, "hunter": 10, "chef": 15,"solar dragon": }
+    output: {"lucky": 5, "insanity": -10, "hunter": 10, "chef": 15, "great chef:" 30}
     input: "do a magical spell to transform the longsword location: tundra: massive trees, very cold and very strong beasts"
-    output: {"lucky":5, "insanity" -5,,"solar dragon": }
+    output: {"lucky":5, "insanity" -5, "cant break weapons": 20, "ropemaker":20}
     input: "find material for a trap a player location:cornocpia weird structure in the centre with many weapons"
-    output:  {"lucky":5, "insanity" -5, "trap expert: 30,"solar dragon": }
+    output:  {"lucky":5, "insanity" -5, "trap expert: 30 , "pet cat": 10, "great chef": 5}
 end
 
 prompt
-    : from the given input please process and form an event, take into account the location description provided: forage for the tastiest berries in the land
+    : from the given input please process and form an event, take into account the location description provided: try to find a knife
 location:starting position, weird structure in the centre with many weapons
 end
