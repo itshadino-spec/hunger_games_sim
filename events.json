@@ -1,16 +1,18 @@
 {
-    "event": "laze about in the desolate starting area",
+    "event": "carefully gather supplies from the toxic wilderness",
     "outcomes": {
-        "0": "hunger",
-        "20": "thirst",
-        "60": "stinky",
-        "100": "insanity"
+        "0": "poison",
+        "30": "hunger",
+        "70": "healthy",
+        "100": "very healthy"
     },
     "traits": {
-        "lucky": 5,
+        "lucky": 15,
         "insanity": -10,
-        "insomniac": 10,
-        "smell water": 5,
-        "pain tolerance": 5
+        "botanist": 30,
+        "chef": 20,
+        "great chef": 40,
+        "poison resistance": 100,
+        "faster healing": 10
     }
 }

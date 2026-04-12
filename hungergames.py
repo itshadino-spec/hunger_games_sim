@@ -380,7 +380,7 @@ def status_condition(person,day):
             print(person.status)
         
             
-def night(person,night):
+def night(person,nightt):
     sleepge = input(f"{person}sleep y/n:")
     if person.sleepdeprivation >= 100:
         flavour = [person, "collapsed from sleep exhaustion"]
@@ -390,18 +390,18 @@ def night(person,night):
             person.sleepdeprivation += 25
         else:
             person.sleepdeprivation += 40
-        person.status["insanity"] = night
+        person.status["insanity"] = nightt
         flavour = [person, "stayed up for the night"]
         
     elif sleepge == "y":
-        person.status["well rested"] = night
-        person.status["sanity"] = night
+        person.status["well rested"] = nightt
+        person.status["sanity"] = nightt
         flavour = (person , "peacefully fell alseep")
         person.sleepdeprivation = 0
         person.awake = False
     else:
         print("error try again")
-        return night
+        return night(person,nightt)
     llm(person,flavour)
 
 def night_helper_function(daynight):

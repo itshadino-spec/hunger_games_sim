@@ -137,6 +137,6 @@ end
 prompt
     :proccess the following output use the examples as general guidelines but not word for word
     use the prompt creatively and do not try to word for word copy any examples
-    : loaf around
-location:starting position ,nearly no food 
+    : gather supplies
+location:lush with wild life,flaura and fauna yet much is poisonous
 end
