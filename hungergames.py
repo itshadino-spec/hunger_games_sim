@@ -96,11 +96,13 @@ def happenstance(person,happening,day):
 
 
 def save():
+    print("save is running")
     tributes_data = [i.__dict__ for i in tributes_instances if i.alive == True] 
+    
     with open('temp.json', 'w') as f:
         json.dump(tributes_data,f,indent = 4)
     
-    misc_data = {"day": miscinstance.day, "order": miscinstance.order}
+    misc_data = {"day": miscinstance.day, "order": miscinstance.order, "moveflag": miscinstance.moveflag, "sleepflag": miscinstance.sleepflag}
 
     with open('misc.json', 'w') as f:
         json.dump(misc_data, f,indent =4)
@@ -473,7 +475,7 @@ def move(person, day_night, weatherdict):
                 if i in j.alliance:
                     j.location = person.location
     newloc = [i for i in location_instances if tomove == i.name ][0]
-    if (newloc.status_effect != "none"):
+    if (newloc.status_effect != "none") and ("builds shelter" not in person.traits):
         person.status[newloc.status_effect] = day_night
         flavour = [person, "moved to", newloc, "and recieved the", newloc.status_effect]
     else:
@@ -531,6 +533,7 @@ def weather(day):
         flavour = "none"
         if "builds shelter" in i.traits:
             flavour = [i, "is surviving in their shelter"]
+            llm(i,flavour)
             continue
         if (i.location == "tundra"):
             curr = weather_dict.get("tundra")
@@ -653,8 +656,8 @@ def turn(person, day_night):
             return turn(person,day_night, )
         
         status_condition(person,day_night)
-        save()
         person.hp -= 10
+        save()
         if person.hp <= 0:
                 person.alive = False
                 if flag(tributes_instances) == False:
@@ -676,7 +679,7 @@ def main():
             miscinstance.moveflag = True
             miscinstance.sleepflag = True
             for i in tributes_instances:
-                i.awake == True
+                i.awake = True
         print(day)
         miscinstance.order = randomplayer(tributes_instances)
 

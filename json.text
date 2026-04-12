@@ -13,6 +13,7 @@ eg: input: "find a wild beast to eat" location: "tundra: massive trees, very col
     output: "transform: longsword to magical longsword"
     input: "find material for a trap a player location:cornocpia weird structure in the centre with many weapons"
     output: "scrounge the cornocopia for trap material"
+    please add variation and avoid 1to1 copying
 end
 
 outcomes
@@ -45,6 +46,7 @@ eg: input: "find a wild beast to eat" location: "tundra: massive trees, very col
     output: {"0":"longsword", "100": "mythical longsword"}
     input: "find material for a trap a player location:cornocpia weird structure in the centre with many weapons"
     output: {"0": "bear trap", "60": "poison dart trap" "99": "spike pit": "100": "explosive}
+    please add variation and avoid 1to1 copying
 end
 
 traits
@@ -123,6 +125,7 @@ eg: input: "find a wild beast to eat" location: "tundra: massive trees, very col
     output: {"lucky":5, "insanity" -5, "cant break weapons": 20, "ropemaker":20}
     input: "find material for a trap a player location:cornocpia weird structure in the centre with many weapons"
     output:  {"lucky":5, "insanity" -5, "trap expert: 30 , "pet cat": 10, "great chef": 5}
+    please add variation and avoid 1to1 copying
 end
 
 prompt

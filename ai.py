@@ -4,6 +4,9 @@ from typing import List, Optional
 from string import Template
 from objects import Weapon, Tribute, Event, Map, location_instances
 import json
+import time
+import random
+from google.genai import errors
 
 
 def info(objct):
@@ -48,16 +51,41 @@ client = genai.Client(api_key=api_key)
 
 def generate_event(file):
     prompt = description(file, "prompt")
-    response = client.models.generate_content(
-        model="gemini-3.1-flash-lite-preview",
-        contents=prompt,
-        config={
-            "response_mime_type": "application/json",
-            "response_schema": Event.model_json_schema(),
-        },
-    )
-    event = Event.model_validate_json(response.text)
-    return event
+    max_retries = 3
+    base_delay = 2 
+    
+    primary_model = "gemini-3-flash-preview"
+    fallback_model = "gemini-2.5-flash" 
+    current_model = primary_model
+
+    for attempt in range(max_retries):
+        try:
+            response = client.models.generate_content(
+                model=current_model,
+                contents=prompt,
+                config={
+                    "response_mime_type": "application/json",
+                    "response_schema": Event.model_json_schema(),
+                },
+            )
+            event = Event.model_validate_json(response.text)
+            return event
+
+        except errors.ClientError as e:
+            status_code = e.code
+            print(f"[ATTEMPT {attempt + 1}/{max_retries}] ClientError ({status_code}): {e}")
+
+            if status_code == 429:
+                if current_model == primary_model:
+                    print(f"!!! FALLBACK !!! {primary_model} reached quota. Switching to {fallback_model}.")
+                    current_model = fallback_model
+                    continue
+                    
+                if attempt < max_retries - 1:
+                    delay = base_delay * (2 ** attempt) + random.uniform(0, 1)
+                    print(f"-> Rate limit hit on fallback. Retrying in {delay:.2f} seconds...")
+                    time.sleep(delay)
+                    continue
 
 def userprompt(person, text):
     location = [i for i in location_instances if person.location == i.name][0]
@@ -69,8 +97,15 @@ def userprompt(person, text):
     final_text = temp.substitute(data)
     with open("backup.txt", "w") as f:
         f.write(final_text)
-    a = generate_event('backup.txt')
-    return a
+    while True:
+        a = generate_event('backup.txt')
+        
+        if a is not None:
+            return a
+            
+        print("\n[!] API generation failed (models exhausted or server error).")
+        input("Press Enter to try again...")
+        return a
 
 def flavourtext(text):
     pass
@@ -86,4 +121,4 @@ def flavourtext(text):
 intro = reader('introduction.txt')
 
 chat = client.chats.create(model = 'gemini-3-flash-preview')
-chat.send_message(intro) 
+chat.send_message(intro)

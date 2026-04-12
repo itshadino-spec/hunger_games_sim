@@ -25,8 +25,9 @@
         "mothman",
         "jboll",
         "pepsi",
-        "amelia"
+        "amelia",
+        "bobo"
     ],
     "moveflag": false,
-    "sleepflag": false
+    "sleepflag": true
 }
