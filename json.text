@@ -13,6 +13,8 @@ eg: input: "find a wild beast to eat" location: "tundra: massive trees, very col
     output: "transform: longsword to magical longsword"
     input: "find material for a trap a player location:cornocpia weird structure in the centre with many weapons"
     output: "scrounge the cornocopia for trap material"
+    input: "whittle down a stick and flint to form a dagger
+    output: "forming a stone dagger"
     please add variation and avoid 1to1 copying
 end
 
@@ -20,8 +22,8 @@ outcomes
     : must be formatted as a dictionary
           key must be a string representation of a non negative integer
           first key must be "0" and  and final must be "100"
-          value must be from the valid items list OR valid statuses list OR valid weapons 
-          OR valid weapon transformations OR valid traps
+          value must be from the  valid statuses list OR valid weapons 
+          OR valid weapon transformations OR valid traps AND/OR valid items 
           OUTCOMES CANNOT BE FROM MORE THAN ONE LISTS
           outcomes must reflect the location context
 valid items = artecorp potions, potion, candy ,carrots, fish, witch potions, full restore
@@ -46,6 +48,8 @@ eg: input: "find a wild beast to eat" location: "tundra: massive trees, very col
     output: {"0":"longsword", "100": "mythical longsword"}
     input: "find material for a trap a player location:cornocpia weird structure in the centre with many weapons"
     output: {"0": "bear trap", "60": "poison dart trap" "99": "spike pit": "100": "explosive}
+    input: "whittle down stick and flint for a dagger locaiton:ocation:cornocpia weird structure in the centre with many weapons"
+    output: {"0": "stick", "60": "flint dagger", "100":"dagger}
     please add variation and avoid 1to1 copying
 end
 
@@ -125,9 +129,13 @@ eg: input: "find a wild beast to eat" location: "tundra: massive trees, very col
     output: {"lucky":5, "insanity" -5, "cant break weapons": 20, "ropemaker":20}
     input: "find material for a trap a player location:cornocpia weird structure in the centre with many weapons"
     output:  {"lucky":5, "insanity" -5, "trap expert: 30 , "pet cat": 10, "great chef": 5}
+    input: "whittle down stick and flint for a dagger locaiton:ocation:cornocpia weird structure in the centre with many weapons"
+    output:{"lucky":5, "insanity" -5, "cant break weapons": 20, "ropemaker":20}
     please add variation and avoid 1to1 copying
 end
 
 prompt
-    : from the given input please process and form an event, take into account the location description provided: $input
+    :proccess the following output use the examples as general guidelines but not word for word
+    use the prompt creatively and do not try to word for word copy any examples
+    : $input
 end

@@ -2,7 +2,7 @@ import json
 import random
 
 from objects import location_instances, tributes_instances, weapons_instances, generate_event,miscinstance
-from ai import  userprompt, flavourtext
+from ai import  userprompt ,flavourtext
 
 weapon_dict = {}
 for i in weapons_instances:
@@ -491,7 +491,6 @@ def move(person, day_night, weatherdict):
         flavour=[person, "fell into" ,key, "and recieved" , trapdict.get(key)]
         newloc.trap.remove(key)
         
-    weather(day_night)
 
 
 def move_helper_func(day_night,weather_dict):
@@ -532,8 +531,6 @@ def weather(day):
     for i in tributes_instances:
         flavour = "none"
         if "builds shelter" in i.traits:
-            flavour = [i, "is surviving in their shelter"]
-            llm(i,flavour)
             continue
         if (i.location == "tundra"):
             curr = weather_dict.get("tundra")
@@ -622,10 +619,12 @@ def alliances(person,day):
         if name not in person.alliance:
             person.alliance.append(name)
         formalliance()
+        turn(person,day)
     else:
         name = input("enter alliance you want to leave")
         if name in person.alliance:
             person.allliance.remove(name)
+            turn(person,day)
 
     allianceaction = input("what action do you want to do with your alliance")
     if allianceaction == "trade":

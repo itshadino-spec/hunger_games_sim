@@ -6,20 +6,13 @@
         "tallyho",
         "winter",
         "milky",
-        "phorahg",
-        "artenyan",
         "bird",
         "funkier fella",
-        "augustus",
         "geneva checklist",
         "bubble nugget",
         "froglonso",
         "misan",
-        "A",
-        "lys",
         "zal",
-        "naruto the solar dragon",
-        "curious",
         "justinafrog",
         "chance",
         "mothman",
@@ -28,6 +21,6 @@
         "amelia",
         "bobo"
     ],
-    "moveflag": false,
+    "moveflag": true,
     "sleepflag": true
 }
