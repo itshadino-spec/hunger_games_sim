@@ -82,7 +82,7 @@ def happenstance(person,happening,day):
  
     for i in oddtable:
         num = int(i)
-        if rolled > num:
+        if rolled >= num:
             add = happening.outcomes.get(i)
     if "transform" in happening.event:
         return weapontransform(person,happening.outcomes,add,happening)
@@ -667,20 +667,22 @@ def main():
     day = miscinstance.day
     while flag(tributes_instances):
         day += 1
+        miscinstance.day += 1
         save()
-        miscinstance.order = randomplayer(tributes_instances)
-        weather_dict = weather(day)
+        if len(miscinstance.order)  == 0:
+            miscinstance.order = randomplayer(tributes_instances)
+        #weather_dict = weather(day)
         if (day % 2 == 0) and (miscinstance.sleepflag == True) :
             night_helper_function(day)
-        move_helper_func(day,weather_dict)
+        #if miscinstance.moveflag == True:
+            #move_helper_func(day,weather_dict)
         if day % 2 == 1:
             print("DAY HAS BEGUN")
-            miscinstance.moveflag = True
-            miscinstance.sleepflag = True
+            #miscinstance.moveflag = True
+            #miscinstance.sleepflag = True
             for i in tributes_instances:
                 i.awake = True
         print(day)
-        miscinstance.order = randomplayer(tributes_instances)
 
         while len(miscinstance.order) > 0:
             curr = random.choice(miscinstance.order)

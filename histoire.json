@@ -1,0 +1,555 @@
+[
+    {
+        "name": "apo",
+        "traits": [
+            "bread maker",
+            "super strength carrot",
+            "elephant caravan"
+        ],
+        "status": {},
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "justacamel",
+        "traits": [
+            "doctor",
+            "camel",
+            "camelcamel",
+            "martial arts"
+        ],
+        "status": {
+            "thirst": 1
+        },
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "desert",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "tallyho",
+        "traits": [
+            "fast",
+            "tuneller",
+            "nocturnal"
+        ],
+        "status": {
+            "poison": 1
+        },
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "poisoncreek",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "winter",
+        "traits": [
+            "witch doctor",
+            "high pain tolerance",
+            "summons stone"
+        ],
+        "status": {
+            "poison": 1
+        },
+        "hp": 110,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "poisoncreek",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "milky",
+        "traits": [
+            "can smell water",
+            "charismatic",
+            "chef"
+        ],
+        "status": {
+            "frozen": 1
+        },
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "tundra",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "phorahg",
+        "traits": [
+            "faster healing",
+            "martial arts",
+            "knows where everyone is"
+        ],
+        "status": {},
+        "hp": 70,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap",
+            "fish"
+        ],
+        "location": "cornocopia",
+        "alliance": [
+            "01"
+        ],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "artenyan",
+        "traits": [
+            "long range weapon",
+            "nocturnal",
+            "artecorp potions"
+        ],
+        "status": {},
+        "hp": 90,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap",
+            "potion"
+        ],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "bird",
+        "traits": [
+            "ropemaker",
+            "feather falling",
+            "long range weapon"
+        ],
+        "status": {},
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "funkier fella",
+        "traits": [
+            "stealthy",
+            "super hearing",
+            "hand eye coordination"
+        ],
+        "status": {
+            "poison": 1
+        },
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "poisoncreek",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "augustus",
+        "traits": [
+            "revives birds",
+            "candymaker",
+            "cant break weapons"
+        ],
+        "status": {},
+        "hp": 90,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap",
+            "flint dagger"
+        ],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "geneva checklist",
+        "traits": [
+            "can filter water",
+            "hunter",
+            "stoneweaponmaker"
+        ],
+        "status": {
+            "frozen": 1
+        },
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "tundra",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "bubble nugget",
+        "traits": [
+            "botanist",
+            "agile",
+            "stealthy"
+        ],
+        "status": {
+            "thirst": 1
+        },
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "desert",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "froglonso",
+        "traits": [
+            "knifethrower",
+            "angry",
+            "turns into a rat"
+        ],
+        "status": {},
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "cornocopia",
+        "alliance": [
+            "01"
+        ],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "misan",
+        "traits": [
+            "lucky"
+        ],
+        "status": {},
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "A",
+        "traits": [
+            "frying pan expert",
+            "agile",
+            "charismatic"
+        ],
+        "status": {},
+        "hp": 90,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap",
+            "fryingpan"
+        ],
+        "location": "cornocopia",
+        "alliance": [
+            "01"
+        ],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "lys",
+        "traits": [
+            "poison resistance",
+            "cannibal",
+            "projectile vommit"
+        ],
+        "status": {
+            "very healthy": 1
+        },
+        "hp": 110,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "poisoncreek",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "zal",
+        "traits": [
+            "pet cat",
+            "tea maker",
+            "trap specialist"
+        ],
+        "status": {
+            "poison": 1
+        },
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "poisoncreek",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "naruto the solar dragon",
+        "traits": [
+            "solar dragon"
+        ],
+        "status": {},
+        "hp": 90,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap",
+            "candy"
+        ],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "curious",
+        "traits": [
+            "massive sleepy birds",
+            "projectile protection",
+            "fast"
+        ],
+        "status": {},
+        "hp": 90,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap",
+            "longsword"
+        ],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "justinafrog",
+        "traits": [
+            "builds shelter",
+            "climb trees",
+            "fast"
+        ],
+        "status": {},
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "desert",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "chance",
+        "traits": [
+            "poison resistance",
+            "good eyesight",
+            "good aim"
+        ],
+        "status": {
+            "poison": 1
+        },
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "poisoncreek",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "mothman",
+        "traits": [
+            "nocturnal",
+            "nightvision",
+            "can track people"
+        ],
+        "status": {
+            "frozen": 1
+        },
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "tundra",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "jboll",
+        "traits": [
+            "chef",
+            "hunter",
+            "builds shelter"
+        ],
+        "status": {},
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "tundra",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "pepsi",
+        "traits": [
+            "fast",
+            "nocturnal",
+            "charismatic"
+        ],
+        "status": {},
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "amelia",
+        "traits": [
+            "climb trees",
+            "long range weapon",
+            "stealthy"
+        ],
+        "status": {
+            "thirst": 1
+        },
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "desert",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    },
+    {
+        "name": "bobo",
+        "traits": [
+            "poison resistance",
+            "turns half size",
+            "cant break weapons"
+        ],
+        "status": {},
+        "hp": 100,
+        "alive": true,
+        "inventory": [
+            "potion",
+            "hands",
+            "bear trap"
+        ],
+        "location": "cornocopia",
+        "alliance": [],
+        "awake": true,
+        "sleepdeprivation": 0
+    }
+]

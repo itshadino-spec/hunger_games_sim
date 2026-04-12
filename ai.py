@@ -50,7 +50,7 @@ def generate_event(file):
     prompt = description(file, "prompt")
     response = client.models.generate_content(
         #model= "gemma-4-26b-a4b-it",
-        model = "gemini-2.5-flash",
+        model = "gemini-2.5-flash-lite",
         contents=prompt,
         config={
             "response_mime_type": "application/json",

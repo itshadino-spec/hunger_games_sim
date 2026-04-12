@@ -1,26 +1,6 @@
 {
-    "day": 0,
-    "order": [
-        "apo",
-        "justacamel",
-        "tallyho",
-        "winter",
-        "milky",
-        "bird",
-        "funkier fella",
-        "geneva checklist",
-        "bubble nugget",
-        "froglonso",
-        "misan",
-        "zal",
-        "justinafrog",
-        "chance",
-        "mothman",
-        "jboll",
-        "pepsi",
-        "amelia",
-        "bobo"
-    ],
-    "moveflag": true,
+    "day": 1,
+    "order": [],
+    "moveflag": false,
     "sleepflag": true
 }

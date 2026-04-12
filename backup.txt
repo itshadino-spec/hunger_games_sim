@@ -137,6 +137,6 @@ end
 prompt
     :proccess the following output use the examples as general guidelines but not word for word
     use the prompt creatively and do not try to word for word copy any examples
-    : forage for tasty delicacies of the lush poisonous realm
+    : loaf around
 location:starting position ,nearly no food 
 end
